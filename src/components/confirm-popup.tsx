@@ -1,6 +1,6 @@
 "use client";
 
-import { X } from "lucide-react";
+import { Loader2, X } from "lucide-react";
 import type { ReactNode } from "react";
 
 type ConfirmPopupProps = {
@@ -12,6 +12,7 @@ type ConfirmPopupProps = {
   cancelLabel?: string;
   onConfirm: () => void;
   onCancel: () => void;
+  isLoading?: boolean;
 };
 
 export function ConfirmPopup({
@@ -23,6 +24,7 @@ export function ConfirmPopup({
   cancelLabel = "Cancel",
   onConfirm,
   onCancel,
+  isLoading = false,
 }: ConfirmPopupProps) {
   if (!open) {
     return null;
@@ -60,17 +62,19 @@ export function ConfirmPopup({
         <div className="mt-6 flex gap-3">
           <button
             type="button"
-            onClick={onCancel}
-            className="flex-1 rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-50"
+            disabled={isLoading}
+            className="flex-1 rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-50 disabled:opacity-60 disabled:cursor-not-allowed"
           >
             {cancelLabel}
           </button>
           <button
             type="button"
             onClick={onConfirm}
-            className="flex-1 cursor-pointer rounded-xl bg-red-500 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-red-600 active:scale-[.98]"
+            disabled={isLoading}
+            className="flex-1 cursor-pointer rounded-xl bg-red-500 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-red-600 active:scale-[.98] disabled:opacity-60 disabled:cursor-not-allowed inline-flex items-center justify-center gap-2"
           >
-            {confirmLabel}
+            {isLoading && <Loader2 className="h-4 w-4 animate-spin" />}
+            {isLoading ? "Deleting…" : confirmLabel}
           </button>
         </div>
       </div>

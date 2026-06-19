@@ -2,7 +2,7 @@
 
 import { ConfirmPopup } from "@/components/confirm-popup";
 import { Trash2 } from "lucide-react";
-import { useRef, useState } from "react";
+import { useActionState, useRef, useState } from "react";
 import { deleteCourse } from "./actions";
 
 export function DeleteCourseButton({
@@ -14,6 +14,10 @@ export function DeleteCourseButton({
 }) {
   const [isConfirmOpen, setIsConfirmOpen] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
+  const [, formAction, isPending] = useActionState(
+    deleteCourse.bind(null, courseId),
+    undefined,
+  );
 
   const openConfirm = () => {
     setIsConfirmOpen(true);
@@ -30,7 +34,7 @@ export function DeleteCourseButton({
 
   return (
     <>
-      <form ref={formRef} action={deleteCourse.bind(null, courseId)}>
+      <form ref={formRef} action={formAction}>
         <button
           type="button"
           title="Delete course"
@@ -58,6 +62,7 @@ export function DeleteCourseButton({
         confirmLabel="Delete"
         onCancel={cancelConfirm}
         onConfirm={confirmDelete}
+        isLoading={isPending}
       />
     </>
   );

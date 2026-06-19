@@ -2,7 +2,7 @@
 
 import { useCart } from "@/components/cart-provider";
 import { ConfirmPopup } from "@/components/confirm-popup";
-import { BookOpen, ShoppingCart, Trash2 } from "lucide-react";
+import { BookOpen, Loader2, ShoppingCart, Trash2 } from "lucide-react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -14,6 +14,7 @@ export default function CartPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [isCheckingOut, setIsCheckingOut] = useState(false);
+  const [isRemoving, setIsRemoving] = useState(false);
   const [pendingRemoval, setPendingRemoval] = useState<{
     slug: string;
     name: string;
@@ -32,8 +33,10 @@ export default function CartPage() {
       return;
     }
 
+    setIsRemoving(true);
     removeFromCart(pendingRemoval.slug);
     setPendingRemoval(null);
+    setIsRemoving(false);
   };
 
   const totalSavings = items.reduce(
@@ -263,8 +266,9 @@ export default function CartPage() {
               type="button"
               onClick={() => void handleProceedToCheckout()}
               disabled={isCheckingOut || items.length === 0}
-              className="mt-6 w-full rounded-xl bg-slate-900 px-4 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-slate-700 active:scale-[.98]"
+              className="mt-6 w-full inline-flex items-center justify-center gap-2 rounded-xl bg-slate-900 px-4 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-slate-700 active:scale-[.98] disabled:opacity-60 disabled:cursor-not-allowed"
             >
+              {isCheckingOut && <Loader2 className="h-4 w-4 animate-spin" />}
               {isCheckingOut
                 ? "Redirecting to Stripe..."
                 : "Proceed to Checkout"}
@@ -295,6 +299,7 @@ export default function CartPage() {
         icon={<Trash2 className="h-5 w-5 text-red-500" />}
         cancelLabel="Keep it"
         confirmLabel="Remove"
+        isLoading={isRemoving}
         onCancel={cancelRemove}
         onConfirm={proceedRemove}
       />

@@ -7,8 +7,10 @@ const REMEMBERED_EMAIL_KEY = "skillspring_remembered_email";
 
 export default function LoginFormEnhancements({
   isRegister,
+  disabled = false,
 }: {
   isRegister: boolean;
+  disabled?: boolean;
 }) {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const [showPassword, setShowPassword] = useState(false);
@@ -89,14 +91,16 @@ export default function LoginFormEnhancements({
             name="password"
             type={showPassword ? "text" : "password"}
             required
+            disabled={disabled}
             autoComplete={isRegister ? "new-password" : "current-password"}
             placeholder="••••••••"
-            className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 pr-12 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-cyan-400 focus:bg-white focus:ring-4 focus:ring-cyan-200/45"
+            className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 pr-12 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-cyan-400 focus:bg-white focus:ring-4 focus:ring-cyan-200/45 disabled:opacity-60 disabled:cursor-not-allowed"
           />
           <button
             type="button"
             onClick={() => setShowPassword((current) => !current)}
-            className="absolute right-2 top-1/2 inline-flex -translate-y-1/2 items-center justify-center rounded-lg p-1.5 text-slate-500 transition hover:bg-slate-100 hover:text-slate-700"
+            disabled={disabled}
+            className="absolute right-2 top-1/2 inline-flex -translate-y-1/2 items-center justify-center rounded-lg p-1.5 text-slate-500 transition hover:bg-slate-100 hover:text-slate-700 disabled:opacity-60 disabled:cursor-not-allowed"
             aria-label={showPassword ? "Hide password" : "Show password"}
           >
             {showPassword ? (
@@ -119,7 +123,8 @@ export default function LoginFormEnhancements({
             type="checkbox"
             checked={rememberMe}
             onChange={(event) => setRememberMe(event.target.checked)}
-            className="h-4 w-4 rounded border-slate-300 text-slate-900 focus:ring-slate-300"
+            disabled={disabled}
+            className="h-4 w-4 rounded border-slate-300 text-slate-900 focus:ring-slate-300 disabled:opacity-60 disabled:cursor-not-allowed"
           />
           <span>Remember me on this device</span>
         </label>

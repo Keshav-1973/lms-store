@@ -4,6 +4,7 @@ import { logout } from "@/app/login/actions";
 import { useCart } from "@/components/cart-provider";
 import { createClient } from "@/lib/supabase/client";
 import {
+  Loader2,
   LogIn,
   LogOut,
   Menu,
@@ -32,6 +33,7 @@ function DesktopAccountControl({
   accountDetailsRef,
   closeAccountMenu,
   onLogout,
+  isLoggingOut = false,
 }: {
   checkingSession: boolean;
   userEmail: string | null;
@@ -40,6 +42,7 @@ function DesktopAccountControl({
   accountDetailsRef: RefObject<HTMLDetailsElement | null>;
   closeAccountMenu: () => void;
   onLogout: () => Promise<void>;
+  isLoggingOut?: boolean;
 }) {
   if (checkingSession) {
     return (
@@ -96,10 +99,15 @@ function DesktopAccountControl({
         <button
           type="button"
           onClick={() => onLogout()}
-          className="mt-2 flex w-full items-center gap-1.5 rounded-lg px-2 py-2 text-left text-sm font-semibold text-red-600 transition hover:bg-red-50"
+          disabled={isLoggingOut}
+          className="mt-2 flex w-full items-center gap-1.5 rounded-lg px-2 py-2 text-left text-sm font-semibold text-red-600 transition hover:bg-red-50 disabled:opacity-60 disabled:cursor-not-allowed"
         >
-          <LogOut className="h-4 w-4" aria-hidden="true" />
-          Sign Out
+          {isLoggingOut ? (
+            <Loader2 className="h-4 w-4 animate-spin" />
+          ) : (
+            <LogOut className="h-4 w-4" />
+          )}
+          {isLoggingOut ? "Signing out…" : "Sign Out"}
         </button>
       </div>
     </details>
@@ -120,6 +128,7 @@ export function CommonHeader({
   const [userEmail, setUserEmail] = useState<string | null>(initialUserEmail);
   const [userRole, setUserRole] = useState<UserRole>(initialUserRole);
   const [checkingSession, setCheckingSession] = useState(false);
+  const [loggingOut, setLoggingOut] = useState(false);
   const isHydrated = useSyncExternalStore(
     () => () => {},
     () => true,
@@ -205,14 +214,19 @@ export function CommonHeader({
   };
 
   const handleLogout = async () => {
-    // Clear all localStorage items
-    globalThis.localStorage.clear();
+    setLoggingOut(true);
+    try {
+      // Clear all localStorage items
+      globalThis.localStorage.clear();
 
-    // Clear all sessionStorage items
-    globalThis.sessionStorage.clear();
+      // Clear all sessionStorage items
+      globalThis.sessionStorage.clear();
 
-    // Call the logout server action
-    await logout();
+      // Call the logout server action
+      await logout();
+    } finally {
+      setLoggingOut(false);
+    }
   };
 
   const isInAdmin = pathname.startsWith("/admin");
@@ -330,6 +344,7 @@ export function CommonHeader({
             accountDetailsRef={accountDetailsRef}
             closeAccountMenu={closeAccountMenu}
             onLogout={handleLogout}
+            isLoggingOut={loggingOut}
           />
 
           <details ref={detailsRef} className="group md:hidden">
@@ -446,10 +461,15 @@ export function CommonHeader({
                   <button
                     type="button"
                     onClick={() => handleLogout()}
-                    className="mt-2 flex w-full items-center justify-center gap-1.5 rounded-xl border border-red-200 bg-red-50 px-3 py-2 text-sm font-semibold text-red-700 transition hover:bg-red-100"
+                    disabled={loggingOut}
+                    className="mt-2 flex w-full items-center justify-center gap-1.5 rounded-xl border border-red-200 bg-red-50 px-3 py-2 text-sm font-semibold text-red-700 transition hover:bg-red-100 disabled:opacity-60 disabled:cursor-not-allowed"
                   >
-                    <LogOut className="h-4 w-4" aria-hidden="true" />
-                    Sign Out
+                    {loggingOut ? (
+                      <Loader2 className="h-4 w-4 animate-spin" />
+                    ) : (
+                      <LogOut className="h-4 w-4" />
+                    )}
+                    {loggingOut ? "Signing out…" : "Sign Out"}
                   </button>
                 ) : null}
               </div>

@@ -1,5 +1,6 @@
 "use client";
 
+import { Loader2 } from "lucide-react";
 import { useActionState } from "react";
 import type { SetupAdminState } from "./actions";
 import { promoteSelfToAdmin } from "./actions";
@@ -52,8 +53,9 @@ export default function SetupAdminForm() {
       <button
         type="submit"
         disabled={isPending}
-        className="w-full rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-slate-700 disabled:opacity-60"
+        className="w-full rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-slate-700 disabled:opacity-60 inline-flex items-center justify-center gap-2"
       >
+        {isPending && <Loader2 className="h-4 w-4 animate-spin" />}
         {isPending ? "Promoting..." : "Make Me Admin"}
       </button>
     </form>

@@ -1,6 +1,13 @@
 "use client";
 
-import { ArrowLeft, FileText, PlayCircle, Plus, Trash2 } from "lucide-react";
+import {
+  ArrowLeft,
+  FileText,
+  Loader2,
+  PlayCircle,
+  Plus,
+  Trash2,
+} from "lucide-react";
 import Link from "next/link";
 import { useActionState, useEffect, useMemo, useState } from "react";
 import { toast } from "sonner";
@@ -889,8 +896,9 @@ export default function EditCourseForm({
           <button
             type="submit"
             disabled={isPending}
-            className="rounded-xl bg-slate-900 px-6 py-2.5 text-sm font-semibold text-white transition hover:bg-slate-700 disabled:opacity-60"
+            className="rounded-xl bg-slate-900 px-6 py-2.5 text-sm font-semibold text-white transition hover:bg-slate-700 disabled:opacity-60 inline-flex items-center justify-center gap-2"
           >
+            {isPending && <Loader2 className="h-4 w-4 animate-spin" />}
             {isPending ? "Saving…" : "Save Changes"}
           </button>
         </div>

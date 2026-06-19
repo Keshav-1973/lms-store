@@ -1,7 +1,6 @@
-import { BookOpen } from "lucide-react";
 import Link from "next/link";
 import { login, register } from "./actions";
-import LoginFormEnhancements from "./login-form-enhancements";
+import LoginForm from "./login-form";
 
 type SearchParams = Promise<{
   error?: string;
@@ -75,42 +74,11 @@ export default async function LoginPage({
           </div>
         )}
 
-        <form
+        <LoginForm
           action={isRegister ? register : login}
-          className="rounded-2xl border border-slate-100 bg-white/95 p-5 shadow-sm"
-        >
-          <input type="hidden" name="redirectTo" value={redirectTo} />
-
-          <div className="space-y-4">
-            <div>
-              <label
-                htmlFor="email"
-                className="mb-1.5 block text-sm font-semibold text-slate-700"
-              >
-                Email
-              </label>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                required
-                autoComplete="username"
-                placeholder="you@example.com"
-                className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-cyan-400 focus:bg-white focus:ring-4 focus:ring-cyan-200/45"
-              />
-            </div>
-
-            <LoginFormEnhancements isRegister={isRegister} />
-          </div>
-
-          <button
-            type="submit"
-            className="mt-6 flex w-full items-center justify-center gap-2 rounded-xl bg-linear-to-r from-slate-900 via-slate-800 to-slate-700 px-4 py-3 text-sm font-semibold text-white shadow-md transition hover:-translate-y-0.5 hover:from-slate-800 hover:to-slate-700 active:translate-y-0"
-          >
-            <BookOpen className="h-4 w-4" />
-            {isRegister ? "Create Account" : "Sign In"}
-          </button>
-        </form>
+          isRegister={isRegister}
+          redirectTo={redirectTo}
+        />
 
         <p className="mt-5 text-center text-xs text-slate-400">
           By continuing, you agree to our Terms of Service and Privacy Policy.
