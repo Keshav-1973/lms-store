@@ -4,6 +4,7 @@ import { logout } from "@/app/login/actions";
 import { useCart } from "@/components/cart-provider";
 import { createClient } from "@/lib/supabase/client";
 import {
+  Home,
   Loader2,
   LogIn,
   LogOut,
@@ -294,13 +295,13 @@ export function CommonHeader({
                 <Link
                   href="/"
                   onClick={closeAccountMenu}
-                  className={`rounded-lg px-3 py-1.5 text-sm font-semibold transition ${
+                  className={`flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm font-semibold transition ${
                     pathname === "/"
                       ? "bg-slate-100 text-slate-900"
                       : "text-slate-600 hover:bg-slate-100"
                   }`}
                 >
-                  Home
+                  <Home size={20} /> Home
                 </Link>
                 <Link
                   href="/admin/courses"
@@ -311,7 +312,7 @@ export function CommonHeader({
                       : "text-slate-600 hover:bg-slate-100"
                   }`}
                 >
-                  Courses
+                  Manage Courses
                 </Link>
                 <Link
                   href="/admin/students"
@@ -322,7 +323,7 @@ export function CommonHeader({
                       : "text-slate-600 hover:bg-slate-100"
                   }`}
                 >
-                  Students
+                  Manage Students
                 </Link>
               </>
             ) : (
@@ -396,13 +397,13 @@ export function CommonHeader({
                     <Link
                       href="/"
                       onClick={closeMenu}
-                      className={`block rounded-xl px-3 py-2 text-sm font-semibold transition ${
+                      className={`flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-semibold transition ${
                         pathname === "/"
                           ? "bg-slate-100 text-slate-900"
                           : "text-slate-600 hover:bg-slate-100"
                       }`}
                     >
-                      Home
+                      <Home size={20} /> Home
                     </Link>
                     <Link
                       href="/admin/courses"
@@ -413,7 +414,7 @@ export function CommonHeader({
                           : "text-slate-600 hover:bg-slate-100"
                       }`}
                     >
-                      Courses
+                      Manage Courses
                     </Link>
                     <Link
                       href="/admin/students"
@@ -424,7 +425,7 @@ export function CommonHeader({
                           : "text-slate-600 hover:bg-slate-100"
                       }`}
                     >
-                      Students
+                      Manage Students
                     </Link>
                   </>
                 ) : (
@@ -459,13 +460,15 @@ export function CommonHeader({
                     ) : null}
                   </Link>
                 )}
-                <Link
-                  href={loginHref}
-                  onClick={closeMenu}
-                  className="mt-2 block rounded-xl bg-cyan-100 px-3 py-2 text-sm font-semibold text-cyan-700 transition hover:bg-cyan-200"
-                >
-                  {userEmail ? "Account" : "Sign In"}
-                </Link>
+                {userEmail ? null : (
+                  <Link
+                    href={loginHref}
+                    onClick={closeMenu}
+                    className="mt-2 block rounded-xl bg-cyan-100 px-3 py-2 text-sm font-semibold text-cyan-700 transition hover:bg-cyan-200"
+                  >
+                    Sign In
+                  </Link>
+                )}
 
                 {userRole === "student" ? (
                   <Link

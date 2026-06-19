@@ -12,7 +12,7 @@ export function AdminHeader() {
     <header className="sticky top-16 z-20 h-16 border-b border-slate-200 bg-white">
       <div className="mx-auto flex h-full w-full max-w-6xl items-center justify-between px-5 sm:px-8">
         <p className="text-sm font-semibold uppercase tracking-wide text-slate-500">
-          Admin Panel
+          er
         </p>
         <nav className="flex items-center gap-2">
           <Link

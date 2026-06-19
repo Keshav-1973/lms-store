@@ -238,7 +238,7 @@ export default async function AdminStudentsPage() {
   const activePendingPurchases = pending.filter((row) => !row.claimed);
 
   return (
-    <main className="mx-auto w-full max-w-6xl px-5 py-10 sm:px-8">
+    <main className="mx-auto w-full max-w-6xl px-4 py-10 sm:px-8">
       <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
         <div>
           <h1 className="text-2xl font-bold text-slate-900">Students</h1>
@@ -246,7 +246,7 @@ export default async function AdminStudentsPage() {
             View enrolled students and paid purchases waiting to be claimed.
           </p>
         </div>
-        <div className="grid grid-cols-1 gap-2 text-sm sm:grid-cols-3">
+        <div className="grid grid-cols-2 gap-2 text-sm sm:grid-cols-3">
           <div className="rounded-xl border border-slate-200 bg-white px-3 py-2">
             <p className="text-xs uppercase tracking-wide text-slate-400">
               Students
@@ -332,7 +332,55 @@ export default async function AdminStudentsPage() {
           </div>
         ) : (
           <div className="overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-sm">
-            <table className="w-full text-sm">
+            <div className="divide-y divide-slate-100 md:hidden">
+              {activePendingPurchases.map((row) => (
+                <article key={row.id} className="p-4">
+                  <p className="inline-flex items-center gap-1.5 text-sm text-slate-700">
+                    <Mail className="h-3.5 w-3.5 text-slate-400" />
+                    <span className="break-all">{row.email}</span>
+                  </p>
+
+                  <div className="mt-3 grid grid-cols-2 gap-2 text-sm">
+                    <div>
+                      <p className="text-xs uppercase tracking-wide text-slate-400">
+                        Course
+                      </p>
+                      <p className="font-medium text-slate-900">
+                        {row.course_slug}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-xs uppercase tracking-wide text-slate-400">
+                        Paid At
+                      </p>
+                      <p className="text-slate-600">
+                        {asDateTime(row.created_at)}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="mt-3">
+                    <p className="text-xs uppercase tracking-wide text-slate-400">
+                      Stripe Session
+                    </p>
+                    <p className="break-all text-xs text-slate-500">
+                      {row.stripe_session_id}
+                    </p>
+                  </div>
+
+                  <div className="mt-2">
+                    <p className="text-xs uppercase tracking-wide text-slate-400">
+                      Method
+                    </p>
+                    <p className="text-sm capitalize text-slate-600">
+                      {row.purchase_method}
+                    </p>
+                  </div>
+                </article>
+              ))}
+            </div>
+
+            <table className="hidden w-full text-sm md:table">
               <thead>
                 <tr className="border-b border-slate-100 bg-slate-50 text-left">
                   <th className="px-5 py-3.5 font-semibold text-slate-500">

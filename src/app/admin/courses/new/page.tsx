@@ -239,7 +239,7 @@ export default function NewCoursePage() {
   };
 
   return (
-    <main className="mx-auto w-full max-w-2xl px-5 py-10 sm:px-8">
+    <main className="mx-auto w-full max-w-2xl px-4 py-10 sm:px-8">
       <Link
         href="/admin/courses"
         className="mb-6 inline-flex items-center gap-1.5 text-sm font-medium text-slate-500 transition hover:text-slate-800"
@@ -330,7 +330,7 @@ export default function NewCoursePage() {
               onValueChange={(value) => validateAndSetField("tagline", value)}
             />
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <div>
                 <label
                   htmlFor="category"
@@ -398,7 +398,7 @@ export default function NewCoursePage() {
             Pricing
           </h2>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <Field
               label="Price (USD)"
               name="price"
@@ -427,7 +427,7 @@ export default function NewCoursePage() {
             Stats
           </h2>
 
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
             <Field
               label="Rating"
               name="rating"
@@ -534,7 +534,7 @@ export default function NewCoursePage() {
                     className="rounded-xl border border-slate-200 bg-slate-50 p-3"
                   >
                     {/* Module header */}
-                    <div className="mb-2 flex items-center justify-between">
+                    <div className="mb-2 flex flex-wrap items-center justify-between gap-2">
                       <p className="text-xs font-semibold uppercase tracking-[0.08em] text-slate-500">
                         Module {moduleIndex + 1}
                       </p>
@@ -751,17 +751,17 @@ export default function NewCoursePage() {
           </div>
         </div>
 
-        <div className="flex justify-end gap-3">
+        <div className="flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
           <Link
             href="/admin/courses"
-            className="rounded-xl border border-slate-200 px-5 py-2.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-50"
+            className="w-full rounded-xl border border-slate-200 px-5 py-2.5 text-center text-sm font-semibold text-slate-700 transition hover:bg-slate-50 sm:w-auto"
           >
             Cancel
           </Link>
           <button
             type="submit"
             disabled={isPending}
-            className="rounded-xl bg-slate-900 px-6 py-2.5 text-sm font-semibold text-white transition hover:bg-slate-700 disabled:opacity-60 inline-flex items-center justify-center gap-2"
+            className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-slate-900 px-6 py-2.5 text-sm font-semibold text-white transition hover:bg-slate-700 disabled:opacity-60 sm:w-auto"
           >
             {isPending && <Loader2 className="h-4 w-4 animate-spin" />}
             {isPending ? "Saving…" : "Save Course"}
