@@ -62,6 +62,7 @@ export function ConfirmPopup({
         <div className="mt-6 flex gap-3">
           <button
             type="button"
+            onClick={onCancel}
             disabled={isLoading}
             className="flex-1 rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-50 disabled:opacity-60 disabled:cursor-not-allowed"
           >

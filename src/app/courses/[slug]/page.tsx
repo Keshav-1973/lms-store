@@ -130,7 +130,7 @@ export default async function CourseDetailsPage({
         </div>
 
         <div className="grid gap-5 p-6 sm:p-8 lg:grid-cols-[1.7fr_1fr]">
-          <div className="space-y-5">
+          <div className="order-2 space-y-5 lg:order-1">
             <article className="rounded-2xl border border-(--theme-card-border) bg-(--theme-surface-raised) p-5 shadow-sm sm:p-6">
               <h2 className="text-lg font-semibold text-(--theme-text-primary)">
                 Course Overview
@@ -244,7 +244,7 @@ export default async function CourseDetailsPage({
             </article>
           </div>
 
-          <aside className="h-fit rounded-2xl border border-(--theme-card-featured-border) bg-(--theme-surface) p-5 shadow-sm lg:sticky lg:top-24">
+          <aside className="order-1 h-fit rounded-2xl border border-(--theme-card-featured-border) bg-(--theme-surface) p-5 shadow-sm lg:order-2 lg:sticky lg:top-24">
             <p className="text-sm text-(--theme-text-secondary)">Program Fee</p>
             <div className="mt-1 flex items-baseline gap-2">
               <p className="text-3xl font-bold text-(--theme-text-primary)">

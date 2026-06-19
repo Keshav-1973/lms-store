@@ -207,6 +207,36 @@ export function CommonHeader({
     }
   };
 
+  useEffect(() => {
+    const handlePointerDown = (event: PointerEvent) => {
+      const menu = detailsRef.current;
+
+      if (!menu?.open) {
+        return;
+      }
+
+      if (!menu.contains(event.target as Node)) {
+        menu.open = false;
+      }
+    };
+
+    const handleScroll = () => {
+      const menu = detailsRef.current;
+
+      if (menu?.open) {
+        menu.open = false;
+      }
+    };
+
+    document.addEventListener("pointerdown", handlePointerDown);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      document.removeEventListener("pointerdown", handlePointerDown);
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   const closeAccountMenu = () => {
     if (accountDetailsRef.current) {
       accountDetailsRef.current.open = false;

@@ -183,6 +183,19 @@ create policy "course_modules: admin read all"
   on public.course_modules for select
   using (public.is_admin());
 
+drop policy if exists "course_modules: public read published" on public.course_modules;
+create policy "course_modules: public read published"
+  on public.course_modules for select
+  using (
+    published = true
+    and exists (
+      select 1
+      from public.courses c
+      where c.id = course_id
+        and c.published = true
+    )
+  );
+
 drop policy if exists "course_modules: enrolled read" on public.course_modules;
 create policy "course_modules: enrolled read"
   on public.course_modules for select

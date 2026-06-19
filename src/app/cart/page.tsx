@@ -178,7 +178,7 @@ export default function CartPage() {
 
                   {/* details */}
                   <div className="min-w-0 flex-1">
-                    <h2 className="truncate text-base font-semibold text-slate-900">
+                    <h2 className="wrap-break-word text-base font-semibold leading-snug text-slate-900 sm:truncate">
                       {item.name}
                     </h2>
 
@@ -230,9 +230,9 @@ export default function CartPage() {
               {items.map((item) => (
                 <li
                   key={item.slug}
-                  className="flex items-center justify-between gap-3 text-sm"
+                  className="flex items-start justify-between gap-3 text-sm"
                 >
-                  <span className="min-w-0 truncate text-slate-600">
+                  <span className="min-w-0 pr-2 text-slate-600 wrap-break-word">
                     {item.name}
                   </span>
                   <span className="shrink-0 font-medium text-slate-900">
