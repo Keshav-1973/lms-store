@@ -1,0 +1,68 @@
+:root {
+  /* Page */
+  --theme-page-bg: #f8f7f4;
+
+  /* Surfaces */
+  --theme-surface: #ffffff;
+  --theme-surface-raised: #ffffff;
+  --theme-surface-sunken: #f0ede7;
+
+  /* Borders */
+  --theme-border: #e5e2db;
+  --theme-border-strong: #c9c5bc;
+  --theme-border-focus: #111111;
+
+  /* Text */
+  --theme-text-primary: #111111;
+  --theme-text-secondary: #6b6b6b;
+  --theme-text-muted: #aaaaaa;
+  --theme-text-inverse: #f8f7f4;
+
+  /* Brand / CTA */
+  --theme-brand: #111111;
+  --theme-brand-hover: #2a2a2a;
+
+  /* Course cards */
+  --theme-card-bg: #ffffff;
+  --theme-card-border: #e5e2db;
+  --theme-card-featured-border: #111111;
+
+  /* Badges / tags */
+  --theme-tag-bg: #f0ede7;
+  --theme-tag-text: #666666;
+  --theme-tag-featured-bg: #111111;
+  --theme-tag-featured-text: #f8f7f4;
+
+  /* Category label colors */
+  --theme-cat-design: #6b6b6b;
+  --theme-cat-engineering: #111111;
+  --theme-cat-data: #6b6b6b;
+
+  /* Stat tiles */
+  --theme-stat-bg: #ffffff;
+  --theme-stat-border: #e5e2db;
+  --theme-stat-value: #111111;
+  --theme-stat-label: #aaaaaa;
+
+  /* Testimonials */
+  --theme-testimonial-bg: #ffffff;
+  --theme-testimonial-border: #e5e2db;
+  --theme-testimonial-card: #f8f7f4;
+  --theme-testimonial-text: #444444;
+  --theme-testimonial-name: #999999;
+  --theme-accent-bar: #111111;
+
+  /* Hero */
+  --theme-hero-bg: #ffffff;
+  --theme-hero-border: #e5e2db;
+
+  /* Buttons */
+  --theme-btn-primary-bg: #111111;
+  --theme-btn-primary-text: #ffffff;
+  --theme-btn-ghost-border: #d4d0c8;
+  --theme-btn-ghost-text: #111111;
+
+  /* Section label */
+  --theme-label-text: #999999;
+  --theme-label-spacing: 0.08em;
+}

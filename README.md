@@ -1,36 +1,61 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# my-store
 
-## Getting Started
+Next.js project connected to Supabase.
 
-First, run the development server:
+## 1. Install and Run
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 2. Configure Supabase Connection
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. In Supabase, open your project and copy API values from Settings -> API.
+2. Copy `.env.example` to `.env.local`.
+3. Set:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+NEXT_PUBLIC_SUPABASE_URL="https://your-project-ref.supabase.co"
+NEXT_PUBLIC_SUPABASE_ANON_KEY="your-anon-key"
+SUPABASE_SERVICE_ROLE_KEY="your-service-role-key"
+SEED_SECRET="random-secret"
+ADMIN_SETUP_SECRET="random-secret"
+ALLOW_PRODUCTION_SEED="false"
+ALLOW_PRODUCTION_ADMIN_SETUP="false"
+STRIPE_SECRET_KEY="sk_test_..."
+STRIPE_WEBHOOK_SECRET="whsec_..."
+```
 
-## Learn More
+## 3. Test the API
 
-To learn more about Next.js, take a look at the following resources:
+Create a product:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+curl -X POST http://localhost:3000/api/products \
+	-H "Content-Type: application/json" \
+	-d '{"name":"T-shirt","price":29.99}'
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Read products:
 
-## Deploy on Vercel
+```bash
+curl http://localhost:3000/api/products
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Project Notes
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Supabase server/client helpers are in `src/lib/supabase`.
+- API routes are thin handlers under `src/app/api/**/route.ts`.
+- Business logic is grouped by domain under `src/features/**`.
+- Shared runtime utilities are in `src/lib` (`env`, `http`, `auth`, `logger`).
+- Home page includes quick run instructions in `src/app/page.tsx`.
+
+## Verification
+
+```bash
+npm run lint
+npm run build
+```
+
+CI runs the same checks on pull requests via `.github/workflows/ci.yml`.
