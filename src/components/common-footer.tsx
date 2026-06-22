@@ -74,9 +74,9 @@ export function CommonFooter() {
           </Link>
 
           <p className="mt-4 max-w-xl text-sm leading-relaxed text-slate-300">
-            SkillSolutions offers a diverse range of online courses designed to
-            empower students in software development, cybersecurity, data
-            science, cloud, and modern AI workflows.
+            We teach tech courses in areas like web dev, data science,
+            cybersecurity, and AI. We're here to help people learn the skills
+            they need to land a job they actually want.
           </p>
 
           <div className="mt-5 space-y-2 text-sm text-slate-300">
@@ -98,10 +98,10 @@ export function CommonFooter() {
             <p>
               Email:{" "}
               <Link
-                href="mailto:support@skillsolutions.academy"
+                href="mailto:support@skillsolutions.com"
                 className="transition hover:text-white"
               >
-                support@skillsolutions.academy
+                support@skillsolutions.com
               </Link>
             </p>
           </div>
@@ -164,7 +164,7 @@ export function CommonFooter() {
 
       <div className="border-t border-slate-800 px-5 py-4 sm:px-8">
         <p className="mx-auto w-full max-w-7xl text-xs text-slate-400">
-          Copyright 2026 SkillSolutions Academy | All Rights Reserved
+          Copyright 2026 SkillSolutions | All Rights Reserved
         </p>
       </div>
     </footer>

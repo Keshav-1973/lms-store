@@ -51,14 +51,14 @@ export default function CoursesPage() {
 
       <section className="relative rounded-3xl border border-(--theme-hero-border) bg-(--theme-hero-bg) p-4 shadow-md sm:p-5">
         <p className="inline-flex rounded-full border border-(--theme-border) bg-(--theme-surface-sunken) px-3 py-1 text-xs font-semibold uppercase tracking-[0.12em] text-(--theme-text-secondary)">
-          Career Programs
+          All our programs
         </p>
         <h1 className="mt-3 text-2xl font-semibold leading-tight text-(--theme-text-primary) sm:text-3xl">
-          Pick your track and start learning today
+          Pick a course and get started
         </h1>
         <p className="mt-2 max-w-3xl text-sm text-(--theme-text-secondary)">
-          Compact view of all available courses so you can compare quickly and
-          enroll faster.
+          Here's everything we offer. Check them out, compare, and sign up for
+          the one that fits what you're trying to learn.
         </p>
       </section>
 

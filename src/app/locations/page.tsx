@@ -7,7 +7,7 @@ export default function LocationsPage() {
       <section className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
         <h1 className="text-3xl font-bold text-slate-900">Locations</h1>
         <p className="mt-3 text-sm text-slate-600">
-          Explore SkillSolutions learning support by region.
+          We're in multiple regions to support learners wherever they are.
         </p>
 
         <div className="mt-6 grid gap-3 sm:grid-cols-2 md:grid-cols-3">

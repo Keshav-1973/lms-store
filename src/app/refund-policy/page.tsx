@@ -2,17 +2,17 @@ export default function RefundPolicyPage() {
   return (
     <main className="mx-auto w-full max-w-4xl px-5 py-12 sm:px-8">
       <section className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
-        <h1 className="text-3xl font-bold text-slate-900">Refund Policy</h1>
+        <h1 className="text-3xl font-bold text-slate-900">
+          Refund & Cancellation Policy
+        </h1>
         <p className="mt-4 text-sm leading-relaxed text-slate-600">
-          At <span className="font-semibold">SkillSolutions Academy</span>, we
-          are committed to delivering a positive and enriching learning
-          experience for both online and classroom-style training. We understand
-          that plans can change, so this policy explains our cancellation and
-          refund terms in a transparent way.
+          We know that life happens and plans change. If you need to cancel or
+          you're not happy with your course, here's what to expect. We want to
+          make this straightforward and fair.
         </p>
         <p className="mt-3 text-sm leading-relaxed text-slate-600">
-          By purchasing a course, you agree to our Privacy Policy, Terms &
-          Condition, and the refund terms listed below.
+          When you purchase a course, you're agreeing to our Privacy Policy,
+          Terms & Conditions, and the refund terms below.
         </p>
 
         <div className="mt-8 space-y-8 text-sm leading-relaxed text-slate-700">
@@ -148,10 +148,10 @@ export default function RefundPolicyPage() {
             <p className="mt-2">
               For any questions or assistance, contact our support team at{" "}
               <a
-                href="mailto:support@skillsolutions.academy"
+                href="mailto:support@skillsolutions.com"
                 className="font-medium text-cyan-700 hover:underline"
               >
-                support@skillsolutions.academy
+                support@skillsolutions.com
               </a>
               .
             </p>

@@ -2,36 +2,30 @@ export default function PrivacyPolicyPage() {
   return (
     <main className="mx-auto w-full max-w-4xl px-5 py-12 sm:px-8">
       <section className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
-        <h1 className="text-3xl font-bold text-slate-900">
-          Definitions of Privacy Policy
-        </h1>
+        <h1 className="text-3xl font-bold text-slate-900">Privacy Policy</h1>
 
         <p className="mt-4 text-sm leading-relaxed text-slate-600">
-          Skill Solutions LLC is committed to protecting your privacy. We take
-          data protection and privacy very seriously. This Privacy Policy
-          describes how we collect, use, share, and secure personal information
-          when you visit websites owned and operated by us and when you use our
-          services.
+          We care about protecting your privacy. This policy explains how we
+          collect information from you, what we do with it, and how to control
+          what we share.
         </p>
 
         <p className="mt-3 text-sm leading-relaxed text-slate-600">
-          It also describes your choices regarding use, access, withdrawal of
-          consent, and correction of personal information. Information collected
-          through our services is limited to the purpose of providing the
-          service you selected.
+          If you have questions about your data, you can ask us to show you what
+          we have, delete certain information, or stop using it in certain ways.
+          We only collect what we need to provide the service you signed up for.
         </p>
 
         <p className="mt-3 text-sm leading-relaxed text-slate-600">
-          Capitalized terms used here but not defined have the same meaning as
-          in our Terms and Conditions.
+          Any terms you see here that aren't defined have the same meaning as
+          they do in our Terms and Conditions.
         </p>
 
         <p className="mt-3 text-sm leading-relaxed text-slate-600">
-          For this Privacy Policy, sensitive personal data or information is as
-          defined under applicable privacy laws. References to personal
-          information, personally identifiable information, or personal data in
-          this policy include sensitive personal data wherever appropriate or
-          required by law.
+          When we talk about personal data here, we're including sensitive
+          information like financial data, health information, or identification
+          numbers — basically anything that could identify you or tell us
+          something specific about you.
         </p>
 
         <div className="mt-8 space-y-8 text-sm leading-relaxed text-slate-700">

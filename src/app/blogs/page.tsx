@@ -22,9 +22,10 @@ export default function BlogsPage() {
   return (
     <main className="mx-auto w-full max-w-5xl px-5 py-12 sm:px-8">
       <section className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
-        <h1 className="text-3xl font-bold text-slate-900">Blogs</h1>
+        <h1 className="text-3xl font-bold text-slate-900">Blog</h1>
         <p className="mt-3 text-sm text-slate-600">
-          Learning guides and career insights from the SkillSolutions team.
+          Tips, guides, and stories to help you learn and move your career
+          forward.
         </p>
 
         <div className="mt-6 grid gap-4 md:grid-cols-2">

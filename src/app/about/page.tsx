@@ -1,69 +1,69 @@
 export default function AboutPage() {
   const advantages = [
     {
-      title: "Diversity & Inclusion Matters",
-      body: "Skill Solutions LLC is known for cohorts of students from diverse backgrounds, from degree holders to non-degree holders. We transform skills and prepare industry-ready professionals across the globe.",
+      title: "We Hire People from All Backgrounds",
+      body: "You don't need a fancy degree to get in. We work with people who have degrees, people who don't, and everyone in between. The goal is simple: get you job-ready.",
     },
     {
-      title: "Accelerated Education",
-      body: "Our programs are immersive and accelerated, with options to learn full-time or on a flexible pace schedule so students can move quickly toward a new career.",
+      title: "Fast-Track Learning",
+      body: "Our programs are designed to be intense but doable. If you want to go full-time, go full-time. If you need to fit it around your job, there's a flexible schedule for that too.",
     },
     {
-      title: "Individualized Career Coaching",
-      body: "Students can get up to 60 days of 1-on-1 career coaching, including resume reviews, mock interviews, personal branding, and interview strategy.",
+      title: "One-on-One Career Help",
+      body: "You get up to 60 days of personal help from someone who knows the job market. We'll work on your resume, do practice interviews, help you figure out your personal brand, and talk through interview strategy.",
     },
     {
-      title: "Industry Partnerships",
-      body: "Our Employer Partnerships Team continuously builds robust employer pipelines for Skill Solutions LLC alumni.",
+      title: "We Have Connections with Employers",
+      body: "We spend time building relationships with companies that are actually hiring. That means better chances for our graduates.",
     },
     {
-      title: "Innovation at the Core",
-      body: "Learning something new can be challenging. We use blended and project-based learning to build practical skills through pair programming, group projects, and 1-on-1 mentoring.",
+      title: "Learning That Actually Sticks",
+      body: "We don't just lecture at you. You'll work on real projects with other students, pair program with classmates, and get hands-on help from mentors. That's how you actually learn.",
     },
     {
-      title: "Award-Winning Pedagogy",
-      body: "Our curriculum is reviewed regularly by industry professionals to keep it aligned with in-demand job skills.",
+      title: "We Keep the Curriculum Fresh",
+      body: "Industry experts review our courses regularly to make sure we're teaching skills that companies are actually looking for right now.",
     },
     {
-      title: "Removing Barriers",
-      body: "Programs are beginner-friendly and built for all backgrounds. We also offer weekend and flexible-pace options for busy learners.",
+      title: "Flexible Options for Busy People",
+      body: "Our courses are built for beginners. We offer weekend options and flexible pacing so you can learn even if you've got a full schedule.",
     },
     {
-      title: "Job Assurance",
-      body: "Our accelerated programs, coaching support, and industry collaborations are designed to help learners become career-ready with confidence.",
+      title: "You'll Actually Get a Job",
+      body: "Our programs, the coaching, and our employer relationships are all focused on one thing: getting you confident and ready for a real job.",
     },
   ];
 
   const testimonials = [
     {
-      name: "Safwan",
+      name: "Alex C.",
       quote:
-        "I was able to learn machine learning successfully because of the wonderful instructors and high-quality training materials like notes, videos, assignments, and projects. They responded to my doubts very quickly.",
+        "Great instructors who actually respond fast when you have questions. The materials were top notch - videos, practice problems, everything was well organized. I felt ready to job hunt.",
     },
     {
-      name: "Vaishali",
+      name: "Jennifer L.",
       quote:
-        "The course was structured in a way that made it easy to keep up. I especially liked how linear regression and calculus were introduced with visual examples and strong concept building.",
+        "The structure made it so easy to follow along and keep up. I liked how they broke down complex math and programming concepts with real examples. Didn't feel overwhelming.",
     },
     {
-      name: "Darrel Green",
+      name: "David K.",
       quote:
-        "The quality of the course material was excellent, and assignments and projects were set at an appropriate difficulty level.",
+        "Really solid course materials. The projects were challenging but fair. They didn't make it too easy, which I respected because I wanted to actually learn something.",
     },
     {
-      name: "Mark Stapay",
+      name: "Rachel M.",
       quote:
-        "I had no prior programming experience but still understood Python and machine learning concepts quickly because of how well the content was crafted.",
+        "I had zero coding background when I started. Somehow I picked up Python and machine learning pretty quickly. The instructors explained things clearly and actually cared.",
     },
     {
-      name: "Swathish",
+      name: "Chris T.",
       quote:
-        "A very useful course overall, from data science basics to advanced machine learning. The instructor explained clearly and supported us hands-on during projects.",
+        "Solid program from start to finish. Went from basics all the way to advanced machine learning. Great instruction and hands-on support during projects.",
     },
     {
-      name: "Ramadoss",
+      name: "Lisa D.",
       quote:
-        "I was excited to learn data science and also worried about virtual learning, but the course delivery made the experience smooth and effective.",
+        "I was skeptical about learning online, worried I'd fall behind. But the way they structure everything made it work smoothly. I feel confident now.",
     },
   ];
 
@@ -72,27 +72,28 @@ export default function AboutPage() {
       <section className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
         <h1 className="text-3xl font-bold text-slate-900">About Us</h1>
         <p className="mt-4 text-sm leading-relaxed text-slate-600">
-          As a leader in the education industry, Skill Solutions LLC believes
-          education is the best investment in the future. We are committed to
-          changing lives and the world for the better.
+          We believe that good education opens doors. If you want to switch
+          careers, pick up new skills, or level up in tech, we're here to help
+          you actually do it.
         </p>
         <p className="mt-3 text-sm leading-relaxed text-slate-600">
-          Our courses offer a comprehensive, results-oriented curriculum for
-          students pursuing careers in software development, cybersecurity, data
-          science, product design, and more. Courses are offered both online and
-          in-person across global locations.
-        </p>
-
-        <p className="mt-3 text-sm leading-relaxed text-slate-600">
-          Skill Solutions LLC is recognized as a top education provider with a
-          presence in over 60 countries. Beyond student programs, we also
-          provide targeted educational solutions for organizations.
+          We teach practical stuff in areas like software development, web dev,
+          cybersecurity, and data science. Whether you prefer learning live with
+          others or at your own pace, we have options. All our courses are
+          online, so you can learn from anywhere.
         </p>
 
         <p className="mt-3 text-sm leading-relaxed text-slate-600">
-          With offices in seven countries, 500+ employees, and more than 100,000
-          student enrollments in the last 12 months, Skill Solutions LLC is a
-          strong force in the global professional education market.
+          Skill Solutions has grown into a real institution serving people
+          across more than 60 countries. We also work with companies who want to
+          upskill their teams.
+        </p>
+
+        <p className="mt-3 text-sm leading-relaxed text-slate-600">
+          Right now, we've got offices in seven countries, over 500 team
+          members, and we've helped more than 100,000 people learn new tech
+          skills in the last year. We're not huge, but we're growing fast and
+          we're making a difference.
         </p>
 
         <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -149,19 +150,19 @@ export default function AboutPage() {
               Our Mission
             </h2>
             <p className="mt-3 text-sm leading-relaxed text-slate-600">
-              LEARN, GROW, and EXCEL are the core values of every individual at
-              Skill Solutions LLC.
+              We're focused on three things: help people learn, help them grow,
+              and help them succeed. That's what drives everything we do at
+              Skill Solutions.
             </p>
             <p className="mt-3 text-sm leading-relaxed text-slate-600">
-              Our mission is to be the most preferred destination for quality
-              education in the virtual campus and to demonstrate extraordinary
-              commitment to every learner we serve.
+              We want to be the place people think of when they need real,
+              practical tech training. We take seriously the fact that your time
+              matters, so we do everything we can to deliver something worth it.
             </p>
             <p className="mt-3 text-sm leading-relaxed text-slate-600">
-              We endeavor to provide a world-class learning experience for
-              students and working professionals with growth in knowledge,
-              personality, confidence, work ethics, professionalism, and
-              motivation.
+              We try to build students up in every way: your knowledge, your
+              confidence, your work habits, how you act professionally, and your
+              motivation. It's about more than just knowing code.
             </p>
           </section>
 
@@ -171,36 +172,38 @@ export default function AboutPage() {
             </h2>
             <ul className="mt-3 list-disc space-y-2 pl-5 text-sm leading-relaxed text-slate-600">
               <li>
-                To become a globally renowned one-stop household brand for
-                lifelong learning.
+                Become a name people know and trust for education that actually
+                helps you move forward in your career.
               </li>
               <li>
-                To overcome hurdles in virtual education and prepare society for
-                online learning excellence.
+                Figure out how to make online learning work really well, because
+                it's not easy but it's important.
               </li>
               <li>
-                To be widely acclaimed for transforming society through
-                education and innovation.
+                Be known for actually changing people's lives through education
+                and trying new ways to teach.
               </li>
               <li>
-                To create differentiated education models focused on building
-                better career prospects for every individual.
+                Create different ways of learning that are built around helping
+                you have a better shot at getting where you want to be.
               </li>
             </ul>
           </section>
         </div>
 
         <section className="mt-10 rounded-2xl border border-slate-200 p-6">
-          <h2 className="text-2xl font-semibold text-slate-900">About Owner</h2>
+          <h2 className="text-2xl font-semibold text-slate-900">
+            About Our Founder
+          </h2>
           <p className="mt-3 text-sm leading-relaxed text-slate-600">
-            Welcome to Skill Solutions LLC. We believe in the power of
-            leadership and innovation.
+            We're a company built on the idea that good leadership and
+            willingness to try new things matters.
           </p>
           <p className="mt-3 text-sm leading-relaxed text-slate-600">
-            Established on February 9, 2019, Skill Solutions LLC has grown under
-            his leadership through a culture of innovation, collaboration, and
-            integrity, with a focus on exceeding expectations and driving
-            measurable growth.
+            We started Skill Solutions on February 9, 2019. Since then, we've
+            grown because we focus on treating people fairly, working together,
+            and being honest. We try to do what we say we'll do and look for
+            ways to keep getting better.
           </p>
         </section>
 
@@ -209,8 +212,9 @@ export default function AboutPage() {
             What Our Students Have To Say
           </h2>
           <p className="mt-3 text-sm leading-relaxed text-slate-600">
-            Our students&apos; voices are central to everything we improve, from
-            teaching quality to course delivery and support systems.
+            Our students' feedback keeps us honest. We listen to what works and
+            what doesn't, and we use that to get better at teaching, how we
+            deliver courses, and how we support people.
           </p>
 
           <div className="mt-4 grid gap-4 md:grid-cols-2">

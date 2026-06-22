@@ -9,73 +9,62 @@ export default function TermsConditionPage() {
         <div className="mt-6 space-y-8 text-sm leading-relaxed text-slate-700">
           <section>
             <h2 className="text-lg font-semibold text-slate-900">
-              1. Acceptance of this Agreement
+              1. What You're Agreeing To
             </h2>
             <p className="mt-2">
-              <span className="font-medium">1.1</span> By clicking on the SIGNUP
-              option, the participant (You or Your) agrees to the terms and
-              conditions, obligations, representations, warranties and
-              agreements contained herein (Agreement). If You do not accept this
-              Agreement, You must not proceed to view or use any content,
-              information, courseware, products, or services (Services)
-              published or provided on the website owned, maintained and
-              monitored by Us.
+              <span className="font-medium">1.1</span> When you click signup,
+              you're agreeing to the terms below. This agreement covers your use
+              of our website, courses, and everything else we offer. If you
+              don't agree to these terms, don't sign up or use our services.
             </p>
           </section>
 
           <section>
             <h2 className="text-lg font-semibold text-slate-900">
-              2. User ID and Password
+              2. Your Account and Login
             </h2>
             <p className="mt-2">
-              <span className="font-medium">2.1</span> Your user ID and password
-              (Participant Account) are for Your exclusive use only. Sharing
-              Your Participant Account is not permitted and may result in
-              immediate suspension of access to the Website, Services, and
-              Content and Courseware, and termination of this Agreement.
+              <span className="font-medium">2.1</span> Your login information
+              (username and password) is just for you. Don't share it. If we
+              find out you're sharing it with someone else, we'll shut down your
+              access and end this agreement right away.
             </p>
             <p className="mt-2">
-              <span className="font-medium">2.2</span> You are solely
-              responsible for maintaining the confidentiality of Your
-              Participant Account and all activities under it. You agree to
-              notify support@skillsolutionsllc.com immediately of any actual or
-              suspected unauthorized use. You also agree to take all reasonable
-              steps to stop such use and cooperate in any related investigation.
-              We are not liable for claims arising from misuse of Your account
-              due to third-party actions outside our control or due to Your
-              failure to maintain confidentiality.
+              <span className="font-medium">2.2</span> You're responsible for
+              keeping your login information secret. If someone accesses your
+              account without permission, tell us right away at
+              support@skillsolutionsllc.com. We're not responsible for anything
+              that happens to your account if you don't keep it secure or if you
+              don't tell us about unauthorized access.
             </p>
           </section>
 
           <section>
             <h2 className="text-lg font-semibold text-slate-900">
-              3. Content and Courseware
+              3. Course Material and Content
             </h2>
             <p className="mt-2">
-              <span className="font-medium">3.1</span> As part of the Services,
-              We grant access to content, courseware, practice tests, and other
-              information and material in audio/video, written, graphic,
-              recorded, photographic, or machine-readable formats related to the
-              specific training course You registered for (Content and
-              Courseware).
+              <span className="font-medium">3.1</span> When you sign up for a
+              course, you get access to videos, written materials, practice
+              problems, and other stuff related to that specific course. That's
+              what we mean by Content and Courseware.
             </p>
             <p className="mt-2">
-              <span className="font-medium">3.2</span> We reserve the right to
-              amend, revise, or update Content and Courseware. In such cases,
-              additional fees may apply for access to amended or updated
-              material.
+              <span className="font-medium">3.2</span> We can update or change
+              the course material whenever we want. If we make big changes, we
+              might charge more for access to the updated material.
             </p>
           </section>
 
           <section>
             <h2 className="text-lg font-semibold text-slate-900">
-              4. Placement Terms and Conditions
+              4. Job Placement
             </h2>
             <p className="mt-2">
-              Skill Solutions LLC is a training provider for technology,
-              management, law, and other upskilling courses. We work with
-              jobseekers to improve employability, but We do not guarantee any
-              job placement at any point.
+              We teach tech skills, management, and other courses to help you
+              get better at your job or switch careers. We'll help you improve
+              your chances of getting hired, but we can't guarantee you'll get a
+              job. That's not something we can promise.
             </p>
           </section>
 

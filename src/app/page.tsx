@@ -63,22 +63,26 @@ export default function Home() {
   const highlights = [
     {
       title: "Live Classes",
-      description: "Interactive sessions with mentors and real-time Q&A.",
+      description:
+        "Join real sessions where you can ask questions and get answers right away.",
       tone: "from-(--theme-surface) via-(--theme-surface-raised) to-(--theme-surface-sunken) border-(--theme-border)",
     },
     {
-      title: "Top Instructors",
-      description: "Learn from working experts in Data, Web, and AI.",
+      title: "Instructors Who Work in Tech",
+      description:
+        "Learn from people actually working in data, web development, and AI right now.",
       tone: "from-(--theme-surface-raised) via-(--theme-surface) to-(--theme-surface-sunken) border-(--theme-border)",
     },
     {
-      title: "Certifications",
-      description: "Earn verifiable certificates after course completion.",
+      title: "Certificates You Can Share",
+      description:
+        "Get a certificate when you finish that shows what you've learned.",
       tone: "from-(--theme-surface) via-(--theme-surface-sunken) to-(--theme-surface) border-(--theme-border)",
     },
     {
-      title: "100% Job Assistance",
-      description: "Resume prep, mock interviews, and hiring referrals.",
+      title: "Help Getting Your First Job",
+      description:
+        "We'll help with your resume, do practice interviews, and connect you with companies.",
       tone: "from-(--theme-surface-raised) via-(--theme-surface) to-(--theme-surface-sunken) border-(--theme-border)",
     },
   ] as const;
@@ -86,22 +90,22 @@ export default function Home() {
   const testimonials = [
     {
       quote:
-        "I switched from a non-tech background and landed my first analyst role in 5 months. The projects made all the difference.",
-      name: "Ananya S.",
+        "I came from a marketing background with no coding experience. The course structure was perfect for someone busy working full-time. I landed a data analyst role at a startup in Boston within 6 months.",
+      name: "Sarah J.",
       role: "Data Analyst",
       tone: "from-(--theme-testimonial-card) via-(--theme-surface) to-(--theme-testimonial-bg) border-(--theme-testimonial-border)",
     },
     {
       quote:
-        "The full-stack path was practical and clear. I built 3 portfolio apps and now freelance for international clients.",
-      name: "Rohan M.",
+        "The projects were real-world stuff. I built apps I could actually show employers. Got a job offer two weeks after finishing, and they even told me my portfolio was the reason they hired me.",
+      name: "James M.",
       role: "Frontend Developer",
       tone: "from-(--theme-testimonial-card) via-(--theme-surface) to-(--theme-testimonial-bg) border-(--theme-testimonial-border)",
     },
     {
       quote:
-        "Mock interviews and mentorship gave me confidence. I cracked a cloud engineer role right after course completion.",
-      name: "Nikhil P.",
+        "The mock interviews were game-changers for my confidence. I was nervous about the real interviews, but after practicing with the course, I walked in prepared. Got hired as a Cloud Engineer at my first real interview.",
+      name: "Michael T.",
       role: "Cloud Engineer",
       tone: "from-(--theme-testimonial-card) via-(--theme-surface) to-(--theme-testimonial-bg) border-(--theme-testimonial-border)",
     },
@@ -109,9 +113,9 @@ export default function Home() {
 
   const highlightIcons = {
     "Live Classes": GraduationCap,
-    "Top Instructors": Users,
-    Certifications: Award,
-    "100% Job Assistance": Briefcase,
+    "Instructors Who Work in Tech": Users,
+    "Certificates You Can Share": Award,
+    "Help Getting Your First Job": Briefcase,
   } as const;
 
   return (
@@ -129,12 +133,13 @@ export default function Home() {
               Cohort based and self paced
             </p>
             <h1 className="mt-4 max-w-3xl text-4xl font-semibold leading-tight sm:mt-5 sm:text-6xl">
-              Learn in-demand tech skills with expert-led online classes
+              Learn the tech skills you actually need for a job
             </h1>
             <p className="mt-4 max-w-2xl text-base text-slate-700 sm:mt-5 sm:text-lg">
-              From Data Science to AI/ML and modern Web Development, build
-              projects, get mentorship, and move from beginner to confident
-              practitioner.
+              Whether you're interested in data science, web development, or AI,
+              we teach the stuff that matters. You'll build real projects, get
+              guidance from people who do this work, and go from complete
+              beginner to actually confident.
             </p>
             <div className="mt-6 flex flex-wrap gap-2.5 sm:mt-8 sm:gap-3">
               <button
@@ -309,11 +314,11 @@ export default function Home() {
           <div className="flex items-end justify-between gap-3">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.14em] text-cyan-700">
-                Testimonials
+                Stories from people like you
               </p>
               <h2 className="mt-2 inline-flex items-center gap-2 text-2xl font-semibold sm:text-3xl">
                 <Quote className="h-6 w-6 text-slate-700" aria-hidden="true" />
-                What learners say
+                Real stories from our students
               </h2>
             </div>
           </div>
