@@ -209,6 +209,32 @@ async function uploadLessonFile(
   lessonType: "video" | "pdf",
   file: File,
 ) {
+  const { data: buckets, error: listBucketsError } =
+    await adminClient.storage.listBuckets();
+
+  if (listBucketsError) {
+    throw new Error(
+      `Failed to check storage buckets: ${listBucketsError.message}`,
+    );
+  }
+
+  const bucketExists = (buckets ?? []).some(
+    (bucket) => bucket.name === LMS_ASSETS_BUCKET,
+  );
+
+  if (!bucketExists) {
+    const { error: createBucketError } = await adminClient.storage.createBucket(
+      LMS_ASSETS_BUCKET,
+      { public: true },
+    );
+
+    if (createBucketError) {
+      throw new Error(
+        `Failed to create bucket "${LMS_ASSETS_BUCKET}": ${createBucketError.message}`,
+      );
+    }
+  }
+
   const safeName = sanitizeFileName(file.name || "lesson-file");
   const path = `${courseSlug}/module-${modulePosition + 1}/${Date.now()}-${safeName}`;
   const bytes = new Uint8Array(await file.arrayBuffer());
@@ -227,17 +253,7 @@ async function uploadLessonFile(
     );
   }
 
-  const { data } = adminClient.storage
-    .from(LMS_ASSETS_BUCKET)
-    .getPublicUrl(path);
-
-  if (!data.publicUrl) {
-    throw new Error(
-      "Failed to generate a public URL for uploaded lesson file.",
-    );
-  }
-
-  return data.publicUrl;
+  return `/files/${LMS_ASSETS_BUCKET}/${path}`;
 }
 
 function ensureLessonMediaForType(
@@ -678,12 +694,15 @@ export async function createCourse(
   }
 
   revalidatePath("/admin/courses");
+  revalidatePath(`/admin/courses/${createdCourse.id}/content`);
   revalidatePath("/courses");
   const createSuccessParams = new URLSearchParams({
     success: "created",
     course: raw.name,
   });
-  redirect(`/admin/courses?${createSuccessParams.toString()}`);
+  redirect(
+    `/admin/courses/${createdCourse.id}/content?${createSuccessParams.toString()}`,
+  );
 }
 
 export async function updateCourse(
@@ -725,19 +744,28 @@ export async function updateCourse(
     return { error: error.message };
   }
 
-  try {
-    const adminClient = createAdminClient();
-    await syncModulesAndLessons(adminClient, courseId, raw.slug, formData);
-  } catch (syncError) {
-    return {
-      error:
-        syncError instanceof Error
-          ? syncError.message
-          : "Failed to sync course content.",
-    };
+  const hasInlineContentPayload =
+    formData.has("module_titles") ||
+    formData.has("module_db_ids") ||
+    formData.has("lesson_titles") ||
+    formData.has("lesson_db_ids");
+
+  if (hasInlineContentPayload) {
+    try {
+      const adminClient = createAdminClient();
+      await syncModulesAndLessons(adminClient, courseId, raw.slug, formData);
+    } catch (syncError) {
+      return {
+        error:
+          syncError instanceof Error
+            ? syncError.message
+            : "Failed to sync course content.",
+      };
+    }
   }
 
   revalidatePath("/admin/courses");
+  revalidatePath(`/admin/courses/${courseId}/content`);
   revalidatePath("/courses");
   revalidatePath(`/courses/${raw.slug}`);
   revalidatePath("/student");
@@ -745,7 +773,9 @@ export async function updateCourse(
     success: "updated",
     course: raw.name,
   });
-  redirect(`/admin/courses?${updateSuccessParams.toString()}`);
+  redirect(
+    `/admin/courses/${courseId}/content?${updateSuccessParams.toString()}`,
+  );
 }
 
 export async function toggleCoursePublished(

@@ -10,6 +10,7 @@ type ConfirmPopupProps = {
   icon?: ReactNode;
   confirmLabel?: string;
   cancelLabel?: string;
+  loadingLabel?: string;
   onConfirm: () => void;
   onCancel: () => void;
   isLoading?: boolean;
@@ -22,6 +23,7 @@ export function ConfirmPopup({
   icon,
   confirmLabel = "Confirm",
   cancelLabel = "Cancel",
+  loadingLabel = "Working...",
   onConfirm,
   onCancel,
   isLoading = false,
@@ -75,7 +77,7 @@ export function ConfirmPopup({
             className="flex-1 cursor-pointer rounded-xl bg-red-500 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-red-600 active:scale-[.98] disabled:opacity-60 disabled:cursor-not-allowed inline-flex items-center justify-center gap-2"
           >
             {isLoading && <Loader2 className="h-4 w-4 animate-spin" />}
-            {isLoading ? "Deleting…" : confirmLabel}
+            {isLoading ? loadingLabel : confirmLabel}
           </button>
         </div>
       </div>

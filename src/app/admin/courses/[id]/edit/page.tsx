@@ -1,4 +1,3 @@
-import { listCourseContentForAdmin } from "@/features/lms/lms-service";
 import { createClient } from "@/lib/supabase/server";
 import { notFound } from "next/navigation";
 import EditCourseForm from "./edit-course-form";
@@ -25,7 +24,5 @@ export default async function EditCoursePage({ params }: EditCoursePageProps) {
     notFound();
   }
 
-  const modules = await listCourseContentForAdmin(supabase, course.id);
-
-  return <EditCourseForm course={course} existingModules={modules} />;
+  return <EditCourseForm course={course} />;
 }

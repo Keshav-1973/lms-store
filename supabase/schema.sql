@@ -289,6 +289,81 @@ create policy "module_lessons: admin delete"
   using (public.is_admin());
 
 
+-- 6b. Lesson Resources (for multiple videos, PDFs, documents per lesson)
+create table if not exists public.lesson_resources (
+  id             uuid primary key default gen_random_uuid(),
+  lesson_id      uuid references public.module_lessons (id) on delete cascade not null,
+  type           text not null check (type in ('video', 'pdf', 'document')),
+  title          text not null,
+  description    text not null default '',
+  url            text not null,
+  position       int not null default 0,
+  published      boolean not null default true,
+  created_at     timestamptz not null default now(),
+  updated_at     timestamptz not null default now(),
+  unique (lesson_id, position)
+);
+
+create index if not exists lesson_resources_lesson_idx
+  on public.lesson_resources (lesson_id, position);
+
+create or replace function public.touch_lesson_resources_updated_at()
+returns trigger
+language plpgsql
+as $$
+begin
+  new.updated_at = now();
+  return new;
+end;
+$$;
+
+drop trigger if exists lesson_resources_touch_updated_at on public.lesson_resources;
+create trigger lesson_resources_touch_updated_at
+  before update on public.lesson_resources
+  for each row execute procedure public.touch_lesson_resources_updated_at();
+
+alter table public.lesson_resources enable row level security;
+
+drop policy if exists "lesson_resources: admin read all" on public.lesson_resources;
+create policy "lesson_resources: admin read all"
+  on public.lesson_resources for select
+  using (public.is_admin());
+
+drop policy if exists "lesson_resources: enrolled read published" on public.lesson_resources;
+create policy "lesson_resources: enrolled read published"
+  on public.lesson_resources for select
+  using (
+    published = true
+    and exists (
+      select 1
+      from public.module_lessons l
+      join public.course_modules m on m.id = l.module_id
+      join public.courses c on c.id = m.course_id
+      join public.enrollments e on e.course_id = c.id
+      where l.id = lesson_id
+        and l.published = true
+        and m.published = true
+        and c.published = true
+        and e.user_id = auth.uid()
+    )
+  );
+
+drop policy if exists "lesson_resources: admin insert" on public.lesson_resources;
+create policy "lesson_resources: admin insert"
+  on public.lesson_resources for insert
+  with check (public.is_admin());
+
+drop policy if exists "lesson_resources: admin update" on public.lesson_resources;
+create policy "lesson_resources: admin update"
+  on public.lesson_resources for update
+  using (public.is_admin());
+
+drop policy if exists "lesson_resources: admin delete" on public.lesson_resources;
+create policy "lesson_resources: admin delete"
+  on public.lesson_resources for delete
+  using (public.is_admin());
+
+
 -- 7. Lesson Progress
 create table if not exists public.lesson_progress (
   id             uuid primary key default gen_random_uuid(),

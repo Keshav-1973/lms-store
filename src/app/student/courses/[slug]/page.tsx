@@ -28,6 +28,23 @@ function formatDuration(durationSeconds: number) {
   return `${minutes} min`;
 }
 
+function renderLessonTypeIcon(contentType: "video" | "pdf" | "both") {
+  if (contentType === "video") {
+    return <PlayCircle className="h-4 w-4 text-cyan-600" />;
+  }
+
+  if (contentType === "both") {
+    return (
+      <>
+        <PlayCircle className="h-4 w-4 text-cyan-600" />
+        <FileText className="h-4 w-4 text-amber-600" />
+      </>
+    );
+  }
+
+  return <FileText className="h-4 w-4 text-amber-600" />;
+}
+
 export default async function StudentCoursePage({
   params,
 }: StudentCoursePageProps) {
@@ -179,21 +196,17 @@ export default async function StudentCoursePage({
                   <div className="flex flex-wrap items-center justify-between gap-3">
                     <div>
                       <p className="inline-flex items-center gap-2 text-sm font-semibold text-slate-800">
-                        {lesson.content_type === "video" ? (
-                          <PlayCircle className="h-4 w-4 text-cyan-600" />
-                        ) : lesson.content_type === "both" ? (
-                          <>
-                            <PlayCircle className="h-4 w-4 text-cyan-600" />
-                            <FileText className="h-4 w-4 text-amber-600" />
-                          </>
-                        ) : (
-                          <FileText className="h-4 w-4 text-amber-600" />
-                        )}
+                        {renderLessonTypeIcon(lesson.content_type)}
                         Lesson {lessonIndex + 1}: {lesson.title}
                       </p>
                       <p className="mt-1 text-xs text-slate-500">
                         {formatDuration(lesson.duration_seconds)}
                       </p>
+                      {!lesson.video_url && !lesson.pdf_url && (
+                        <p className="mt-1 inline-flex rounded-full bg-amber-50 px-2 py-1 text-xs font-semibold text-amber-700">
+                          Content Coming Soon
+                        </p>
+                      )}
                     </div>
 
                     <form action={updateLessonProgress}>
@@ -233,27 +246,14 @@ export default async function StudentCoursePage({
                     </p>
                   ) : null}
 
-                  {lesson.video_url ? (
-                    <a
-                      href={lesson.video_url}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="mt-3 inline-flex rounded-lg border border-cyan-200 bg-cyan-50 px-3 py-1.5 text-xs font-semibold text-cyan-700 hover:bg-cyan-100"
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    <Link
+                      href={`/student/courses/${learningData.course.slug}/lessons/${lesson.id}`}
+                      className="inline-flex rounded-lg bg-slate-900 px-3 py-1.5 text-xs font-semibold text-white hover:bg-slate-700"
                     >
-                      Open Video Lesson
-                    </a>
-                  ) : null}
-
-                  {lesson.pdf_url ? (
-                    <a
-                      href={lesson.pdf_url}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="mt-3 inline-flex rounded-lg border border-amber-200 bg-amber-50 px-3 py-1.5 text-xs font-semibold text-amber-700 hover:bg-amber-100"
-                    >
-                      Open PDF Resource
-                    </a>
-                  ) : null}
+                      Open Lesson
+                    </Link>
+                  </div>
                 </div>
               ))}
             </div>

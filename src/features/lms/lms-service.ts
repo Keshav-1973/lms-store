@@ -5,6 +5,19 @@ import { randomUUID } from "node:crypto";
 
 export type LessonContentType = "video" | "pdf" | "both";
 
+export type LessonResourceType = "video" | "pdf" | "document";
+
+export type LessonResource = {
+  id: string;
+  lesson_id: string;
+  type: LessonResourceType;
+  title: string;
+  description: string;
+  url: string;
+  position: number;
+  published: boolean;
+};
+
 export type CourseModule = {
   id: string;
   course_id: string;
@@ -25,6 +38,7 @@ export type ModuleLesson = {
   duration_seconds: number;
   position: number;
   published: boolean;
+  resources: LessonResource[];
 };
 
 type LessonProgressRow = {
@@ -62,6 +76,46 @@ export type CourseProgressSummary = {
   completedLessons: number;
   progressPercent: number;
 };
+
+const SUPABASE_PUBLIC_STORAGE_PATH = "/storage/v1/object/public/";
+
+function toOwnDomainFileUrl(url: string | null) {
+  if (!url) {
+    return url;
+  }
+
+  if (url.startsWith("/files/")) {
+    return url;
+  }
+
+  try {
+    const parsed = new URL(url);
+    const markerIndex = parsed.pathname.indexOf(SUPABASE_PUBLIC_STORAGE_PATH);
+
+    if (markerIndex === -1) {
+      return url;
+    }
+
+    const bucketAndPath = parsed.pathname
+      .slice(markerIndex + SUPABASE_PUBLIC_STORAGE_PATH.length)
+      .split("/")
+      .filter(Boolean);
+    const bucket = bucketAndPath.at(0);
+    const objectPath = bucketAndPath.slice(1).join("/");
+
+    if (!bucket || !objectPath) {
+      return url;
+    }
+
+    if (bucket === "course-content") {
+      return `/files/${objectPath}`;
+    }
+
+    return `/files/${bucket}/${objectPath}`;
+  } catch {
+    return url;
+  }
+}
 
 function toProgressPercent(completedLessons: number, totalLessons: number) {
   if (totalLessons <= 0) {
@@ -102,11 +156,51 @@ export async function listCourseContentForAdmin(
     throw new Error(lessonsError.message);
   }
 
-  const lessonRows = (lessons ?? []) as ModuleLesson[];
+  const lessonRows = (lessons ?? []) as Omit<ModuleLesson, "resources">[];
+  const lessonIds = lessonRows.map((lesson) => lesson.id);
+
+  const { data: resources, error: resourcesError } = lessonIds.length
+    ? await supabase
+        .from("lesson_resources")
+        .select(
+          "id, lesson_id, type, title, description, url, position, published",
+        )
+        .in("lesson_id", lessonIds)
+        .order("position", { ascending: true })
+    : { data: [], error: null };
+
+  if (resourcesError) {
+    throw new Error(resourcesError.message);
+  }
+
+  const resourceRows = (resources ?? []) as LessonResource[];
+  const resourcesByLessonId = new Map<string, LessonResource[]>();
+
+  for (const resource of resourceRows) {
+    if (!resourcesByLessonId.has(resource.lesson_id)) {
+      resourcesByLessonId.set(resource.lesson_id, []);
+    }
+    resourcesByLessonId.get(resource.lesson_id)!.push(resource);
+  }
+
+  const lessonsWithResources: ModuleLesson[] = lessonRows.map((lesson) => ({
+    ...lesson,
+    resources: resourcesByLessonId.get(lesson.id) ?? [],
+  }));
 
   return moduleRows.map((moduleRow) => ({
     ...moduleRow,
-    lessons: lessonRows.filter((lesson) => lesson.module_id === moduleRow.id),
+    lessons: lessonsWithResources
+      .filter((lesson) => lesson.module_id === moduleRow.id)
+      .map((lesson) => ({
+        ...lesson,
+        video_url: toOwnDomainFileUrl(lesson.video_url),
+        pdf_url: toOwnDomainFileUrl(lesson.pdf_url),
+        resources: lesson.resources.map((resource) => ({
+          ...resource,
+          url: toOwnDomainFileUrl(resource.url) ?? resource.url,
+        })),
+      })),
   }));
 }
 
@@ -169,8 +263,38 @@ export async function getStudentCourseLearningData(
     throw new Error(lessonsError.message);
   }
 
-  const lessonRows = (lessons ?? []) as ModuleLesson[];
+  const lessonRows = (lessons ?? []) as Omit<ModuleLesson, "resources">[];
   const lessonIds = lessonRows.map((lesson) => lesson.id);
+
+  const { data: resources, error: resourcesError } = lessonIds.length
+    ? await supabase
+        .from("lesson_resources")
+        .select(
+          "id, lesson_id, type, title, description, url, position, published",
+        )
+        .in("lesson_id", lessonIds)
+        .eq("published", true)
+        .order("position", { ascending: true })
+    : { data: [], error: null };
+
+  if (resourcesError) {
+    throw new Error(resourcesError.message);
+  }
+
+  const resourceRows = (resources ?? []) as LessonResource[];
+  const resourcesByLessonId = new Map<string, LessonResource[]>();
+
+  for (const resource of resourceRows) {
+    if (!resourcesByLessonId.has(resource.lesson_id)) {
+      resourcesByLessonId.set(resource.lesson_id, []);
+    }
+    resourcesByLessonId.get(resource.lesson_id)!.push(resource);
+  }
+
+  const lessonsWithResources: ModuleLesson[] = lessonRows.map((lesson) => ({
+    ...lesson,
+    resources: resourcesByLessonId.get(lesson.id) ?? [],
+  }));
 
   const { data: progressRows, error: progressError } = lessonIds.length
     ? await supabase
@@ -190,8 +314,8 @@ export async function getStudentCourseLearningData(
     progressByLessonId.set(row.lesson_id, row.completed);
   }
 
-  const totalLessons = lessonRows.length;
-  const completedLessons = lessonRows.filter((lesson) => {
+  const totalLessons = lessonsWithResources.length;
+  const completedLessons = lessonsWithResources.filter((lesson) => {
     return progressByLessonId.get(lesson.id) === true;
   }).length;
 
@@ -207,10 +331,16 @@ export async function getStudentCourseLearningData(
   }
 
   const modulesWithLessons = moduleRows.map((moduleRow) => {
-    const lessonsForModule = lessonRows
+    const lessonsForModule = lessonsWithResources
       .filter((lesson) => lesson.module_id === moduleRow.id)
       .map((lesson) => ({
         ...lesson,
+        video_url: toOwnDomainFileUrl(lesson.video_url),
+        pdf_url: toOwnDomainFileUrl(lesson.pdf_url),
+        resources: lesson.resources.map((resource) => ({
+          ...resource,
+          url: toOwnDomainFileUrl(resource.url) ?? resource.url,
+        })),
         completed: progressByLessonId.get(lesson.id) === true,
       }));
 

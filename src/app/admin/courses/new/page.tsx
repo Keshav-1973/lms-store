@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowLeft, Loader2, Plus, Trash2 } from "lucide-react";
+import { ArrowLeft, Loader2 } from "lucide-react";
 import Link from "next/link";
 import { useActionState, useEffect, useState } from "react";
 import { toast } from "sonner";
@@ -32,31 +32,6 @@ const ACCENT_PRESETS = [
 ];
 
 const initialState: CourseFormState = {};
-
-type DraftLesson = {
-  id: string;
-  title: string;
-  description: string;
-  type: "video" | "pdf" | "both";
-  durationSeconds: string;
-};
-
-type DraftModule = {
-  id: string;
-  title: string;
-  description: string;
-  lessons: DraftLesson[];
-};
-
-function newLesson(): DraftLesson {
-  return {
-    id: crypto.randomUUID(),
-    title: "",
-    description: "",
-    type: "video",
-    durationSeconds: "0",
-  };
-}
 
 function slugify(value: string) {
   return value
@@ -123,14 +98,6 @@ export default function NewCoursePage() {
   const [selectedAccent, setSelectedAccent] = useState(ACCENT_PRESETS[0].value);
   const [clientErrors, setClientErrors] = useState<FieldErrors>({});
   const [dirtyFields, setDirtyFields] = useState<Record<string, boolean>>({});
-  const [draftModules, setDraftModules] = useState<DraftModule[]>([
-    {
-      id: crypto.randomUUID(),
-      title: "",
-      description: "",
-      lessons: [newLesson()],
-    },
-  ]);
 
   useEffect(() => {
     if (state.error) {
@@ -170,72 +137,6 @@ export default function NewCoursePage() {
     setSlug(nextSlug);
     setIsSlugManuallyEdited(nextSlug.length > 0);
     validateAndSetField("slug", nextSlug);
-  };
-
-  const addDraftModule = () => {
-    setDraftModules((prev) => [
-      ...prev,
-      {
-        id: crypto.randomUUID(),
-        title: "",
-        description: "",
-        lessons: [newLesson()],
-      },
-    ]);
-  };
-
-  const removeDraftModule = (id: string) => {
-    setDraftModules((prev) => {
-      if (prev.length === 1) return prev;
-      return prev.filter((m) => m.id !== id);
-    });
-  };
-
-  const updateDraftModuleField = (
-    moduleId: string,
-    field: "title" | "description",
-    value: string,
-  ) => {
-    setDraftModules((prev) =>
-      prev.map((m) => (m.id === moduleId ? { ...m, [field]: value } : m)),
-    );
-  };
-
-  const addLesson = (moduleId: string) => {
-    setDraftModules((prev) =>
-      prev.map((m) =>
-        m.id === moduleId ? { ...m, lessons: [...m.lessons, newLesson()] } : m,
-      ),
-    );
-  };
-
-  const removeLesson = (moduleId: string, lessonId: string) => {
-    setDraftModules((prev) =>
-      prev.map((m) => {
-        if (m.id !== moduleId) return m;
-        if (m.lessons.length === 1) return m;
-        return { ...m, lessons: m.lessons.filter((l) => l.id !== lessonId) };
-      }),
-    );
-  };
-
-  const updateLesson = (
-    moduleId: string,
-    lessonId: string,
-    field: keyof Omit<DraftLesson, "id">,
-    value: string,
-  ) => {
-    setDraftModules((prev) =>
-      prev.map((m) => {
-        if (m.id !== moduleId) return m;
-        return {
-          ...m,
-          lessons: m.lessons.map((l) =>
-            l.id === lessonId ? { ...l, [field]: value } : l,
-          ),
-        };
-      }),
-    );
   };
 
   return (
@@ -506,232 +407,10 @@ export default function NewCoursePage() {
           </h2>
 
           <div className="space-y-4">
-            <div>
-              <div className="mb-2 flex items-center justify-between">
-                <p className="text-sm font-medium text-slate-700">
-                  Modules with Lesson Files
-                </p>
-                <button
-                  type="button"
-                  onClick={addDraftModule}
-                  className="inline-flex items-center gap-1 rounded-lg border border-slate-200 px-2.5 py-1.5 text-xs font-semibold text-slate-700 hover:bg-slate-100"
-                >
-                  <Plus className="h-3.5 w-3.5" />
-                  Add Module
-                </button>
-              </div>
-
-              {state.fieldErrors?.modules ? (
-                <p className="mb-2 text-xs text-red-600">
-                  {state.fieldErrors.modules}
-                </p>
-              ) : null}
-
-              <div className="space-y-3">
-                {draftModules.map((module, moduleIndex) => (
-                  <div
-                    key={module.id}
-                    className="rounded-xl border border-slate-200 bg-slate-50 p-3"
-                  >
-                    {/* Module header */}
-                    <div className="mb-2 flex flex-wrap items-center justify-between gap-2">
-                      <p className="text-xs font-semibold uppercase tracking-[0.08em] text-slate-500">
-                        Module {moduleIndex + 1}
-                      </p>
-                      <button
-                        type="button"
-                        onClick={() => removeDraftModule(module.id)}
-                        className="inline-flex items-center gap-1 text-xs font-semibold text-red-600 hover:text-red-700"
-                      >
-                        <Trash2 className="h-3.5 w-3.5" />
-                        Remove Module
-                      </button>
-                    </div>
-
-                    {/* Module title + description */}
-                    <div className="grid gap-2 md:grid-cols-2">
-                      <input
-                        name="module_titles"
-                        required
-                        value={module.title}
-                        onChange={(event) =>
-                          updateDraftModuleField(
-                            module.id,
-                            "title",
-                            event.target.value,
-                          )
-                        }
-                        placeholder="Module title"
-                        className="rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm"
-                      />
-                      <input
-                        name="module_descriptions"
-                        value={module.description}
-                        onChange={(event) =>
-                          updateDraftModuleField(
-                            module.id,
-                            "description",
-                            event.target.value,
-                          )
-                        }
-                        placeholder="Module description"
-                        className="rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm"
-                      />
-                    </div>
-                    <input
-                      type="hidden"
-                      name="module_positions"
-                      value={moduleIndex}
-                    />
-
-                    {/* Lessons */}
-                    <div className="mt-3 space-y-2">
-                      {module.lessons.map((lesson, lessonIndex) => (
-                        <div
-                          key={lesson.id}
-                          className="rounded-lg border border-slate-100 bg-white p-2.5"
-                        >
-                          <div className="mb-1.5 flex items-center justify-between">
-                            <p className="text-xs font-medium text-slate-500">
-                              Lesson {lessonIndex + 1}
-                            </p>
-                            <button
-                              type="button"
-                              onClick={() => removeLesson(module.id, lesson.id)}
-                              className="text-xs font-semibold text-red-500 hover:text-red-700"
-                            >
-                              Remove
-                            </button>
-                          </div>
-
-                          <div className="grid gap-2 md:grid-cols-3">
-                            <input
-                              name="lesson_titles"
-                              required
-                              value={lesson.title}
-                              onChange={(event) =>
-                                updateLesson(
-                                  module.id,
-                                  lesson.id,
-                                  "title",
-                                  event.target.value,
-                                )
-                              }
-                              placeholder="Lesson title"
-                              className="rounded-lg border border-slate-200 px-2.5 py-2 text-sm"
-                            />
-                            <select
-                              name="lesson_types"
-                              value={lesson.type}
-                              onChange={(event) =>
-                                updateLesson(
-                                  module.id,
-                                  lesson.id,
-                                  "type",
-                                  event.target.value,
-                                )
-                              }
-                              className="rounded-lg border border-slate-200 px-2.5 py-2 text-sm"
-                            >
-                              <option value="video">Video</option>
-                              <option value="pdf">PDF</option>
-                              <option value="both">Video + PDF</option>
-                            </select>
-                            <input
-                              name="lesson_durations"
-                              type="number"
-                              min={0}
-                              value={lesson.durationSeconds}
-                              onChange={(event) =>
-                                updateLesson(
-                                  module.id,
-                                  lesson.id,
-                                  "durationSeconds",
-                                  event.target.value,
-                                )
-                              }
-                              placeholder="Duration (seconds)"
-                              className="rounded-lg border border-slate-200 px-2.5 py-2 text-sm"
-                            />
-                          </div>
-
-                          {(lesson.type === "video" ||
-                            lesson.type === "both") && (
-                            <label className="mt-2 block">
-                              <span className="mb-1 block text-xs font-medium text-slate-500">
-                                Upload Video
-                              </span>
-                              <input
-                                name="lesson_files_video"
-                                type="file"
-                                accept="video/*"
-                                className="w-full rounded-lg border border-slate-200 px-2.5 py-2 text-sm"
-                              />
-                            </label>
-                          )}
-                          {(lesson.type === "pdf" ||
-                            lesson.type === "both") && (
-                            <label className="mt-2 block">
-                              <span className="mb-1 block text-xs font-medium text-slate-500">
-                                Upload PDF
-                              </span>
-                              <input
-                                name="lesson_files_pdf"
-                                type="file"
-                                accept="application/pdf"
-                                className="w-full rounded-lg border border-slate-200 px-2.5 py-2 text-sm"
-                              />
-                            </label>
-                          )}
-
-                          <textarea
-                            name="lesson_descriptions"
-                            rows={2}
-                            value={lesson.description}
-                            onChange={(event) =>
-                              updateLesson(
-                                module.id,
-                                lesson.id,
-                                "description",
-                                event.target.value,
-                              )
-                            }
-                            placeholder="Lesson description (optional)"
-                            className="mt-2 w-full rounded-lg border border-slate-200 px-2.5 py-2 text-sm"
-                          />
-
-                          {/* maps this flat lesson entry back to its module */}
-                          <input
-                            type="hidden"
-                            name="lesson_module_indices"
-                            value={moduleIndex}
-                          />
-                          <input
-                            type="hidden"
-                            name="lesson_positions"
-                            value={lessonIndex}
-                          />
-                        </div>
-                      ))}
-                    </div>
-
-                    <button
-                      type="button"
-                      onClick={() => addLesson(module.id)}
-                      className="mt-2 inline-flex items-center gap-1 rounded-lg border border-dashed border-slate-300 px-3 py-1.5 text-xs font-semibold text-slate-600 hover:bg-slate-100"
-                    >
-                      <Plus className="h-3.5 w-3.5" />
-                      Add Lesson
-                    </button>
-                  </div>
-                ))}
-              </div>
-
-              <p className="mt-2 text-xs text-slate-400">
-                Each module can have multiple video and PDF lessons. Add more
-                lessons later from Manage Modules &amp; Lessons.
-              </p>
-            </div>
+            <p className="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-600">
+              Modules and lessons are managed after course creation from the
+              dedicated Manage Content page.
+            </p>
             <TextareaField
               label="Included"
               name="included"
