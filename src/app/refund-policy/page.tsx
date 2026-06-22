@@ -4,11 +4,11 @@ export default function RefundPolicyPage() {
       <section className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
         <h1 className="text-3xl font-bold text-slate-900">Refund Policy</h1>
         <p className="mt-4 text-sm leading-relaxed text-slate-600">
-          At <span className="font-semibold">SkillSpring Academy</span>, we are
-          committed to delivering a positive and enriching learning experience
-          for both online and classroom-style training. We understand that plans
-          can change, so this policy explains our cancellation and refund terms
-          in a transparent way.
+          At <span className="font-semibold">SkillSolutions Academy</span>, we
+          are committed to delivering a positive and enriching learning
+          experience for both online and classroom-style training. We understand
+          that plans can change, so this policy explains our cancellation and
+          refund terms in a transparent way.
         </p>
         <p className="mt-3 text-sm leading-relaxed text-slate-600">
           By purchasing a course, you agree to our Privacy Policy, Terms &
@@ -148,10 +148,10 @@ export default function RefundPolicyPage() {
             <p className="mt-2">
               For any questions or assistance, contact our support team at{" "}
               <a
-                href="mailto:support@skillspring.academy"
+                href="mailto:support@skillsolutions.academy"
                 className="font-medium text-cyan-700 hover:underline"
               >
-                support@skillspring.academy
+                support@skillsolutions.academy
               </a>
               .
             </p>

@@ -1,7 +1,3 @@
--- ============================================================
--- SkillSpring LMS – Supabase Schema
--- Run this in the Supabase SQL editor (Dashboard → SQL Editor)
--- ============================================================
 
 -- 1. Profiles (mirrors auth.users, stores role)
 create table if not exists public.profiles (

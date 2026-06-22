@@ -7,7 +7,7 @@ import "./globals.css";
 import "./theme.css";
 
 export const metadata: Metadata = {
-  title: "SkillSpring Academy",
+  title: "SkillSolutions",
   description:
     "Digital courses platform for Data Science, Web Development, and AI/ML.",
 };

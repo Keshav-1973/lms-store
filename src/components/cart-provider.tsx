@@ -30,7 +30,7 @@ type CartContextValue = {
   totalPrice: number;
 };
 
-const CART_STORAGE_KEY = "skillspring_cart_v1";
+const CART_STORAGE_KEY = "skillsolutions_cart_v1";
 
 type CoursesApiResponse = {
   courses?: Array<{ slug: string }>;

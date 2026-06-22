@@ -341,8 +341,8 @@ export default function Home() {
       </main>
 
       <Link
-        href="tel:+18889277072"
-        aria-label="Call SkillSpring support"
+        href="tel:+18053022666"
+        aria-label="Call SkillSolutions support"
         title="Call us"
         className="fixed bottom-6 right-6 z-20 inline-flex h-14 w-14 items-center justify-center rounded-full bg-cyan-500 text-slate-950 shadow-xl ring-4 ring-cyan-200/50 transition hover:-translate-y-0.5 hover:bg-cyan-400"
       >

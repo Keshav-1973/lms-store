@@ -15,19 +15,19 @@ export default function ContactUsPage() {
           <p>
             Email:{" "}
             <Link
-              href="mailto:support@skillspring.academy"
+              href="mailto:support@skillsolutions.academy"
               className="text-cyan-700 hover:underline"
             >
-              support@skillspring.academy
+              support@skillsolutions.academy
             </Link>
           </p>
           <p>
             Phone:{" "}
             <Link
-              href="tel:+18889277072"
+              href="tel:+18053022666"
               className="text-cyan-700 hover:underline"
             >
-              +1 (888) 927 7072
+              +1 (805) 302 2666
             </Link>
           </p>
           <p>Hours: Mon - Fri, 9:00 AM - 6:00 PM (US time zones)</p>

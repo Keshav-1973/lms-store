@@ -3,7 +3,7 @@
 import { Eye, EyeOff } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
-const REMEMBERED_EMAIL_KEY = "skillspring_remembered_email";
+const REMEMBERED_EMAIL_KEY = "skillsolutions_remembered_email";
 
 export default function LoginFormEnhancements({
   isRegister,

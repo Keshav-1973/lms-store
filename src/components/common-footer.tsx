@@ -69,14 +69,14 @@ export function CommonFooter() {
               SS
             </span>
             <span className="text-lg font-semibold text-white">
-              SkillSpring Academy
+              SkillSolutions
             </span>
           </Link>
 
           <p className="mt-4 max-w-xl text-sm leading-relaxed text-slate-300">
-            SkillSpring Academy offers a diverse range of online courses
-            designed to empower students in software development, cybersecurity,
-            data science, cloud, and modern AI workflows.
+            SkillSolutions offers a diverse range of online courses designed to
+            empower students in software development, cybersecurity, data
+            science, cloud, and modern AI workflows.
           </p>
 
           <div className="mt-5 space-y-2 text-sm text-slate-300">
@@ -89,19 +89,19 @@ export function CommonFooter() {
             <p className="flex items-center gap-2">
               <Phone className="h-4 w-4 shrink-0 text-cyan-300" />
               <Link
-                href="tel:+18889277072"
+                href="tel:+18053022666"
                 className="transition hover:text-white"
               >
-                +1 (888) 927 7072
+                +1 (805) 302 2666
               </Link>
             </p>
             <p>
               Email:{" "}
               <Link
-                href="mailto:support@skillspring.academy"
+                href="mailto:support@skillsolutions.academy"
                 className="transition hover:text-white"
               >
-                support@skillspring.academy
+                support@skillsolutions.academy
               </Link>
             </p>
           </div>
@@ -164,7 +164,7 @@ export function CommonFooter() {
 
       <div className="border-t border-slate-800 px-5 py-4 sm:px-8">
         <p className="mx-auto w-full max-w-7xl text-xs text-slate-400">
-          Copyright 2026 SkillSpring Academy | All Rights Reserved
+          Copyright 2026 SkillSolutions Academy | All Rights Reserved
         </p>
       </div>
     </footer>

@@ -31,7 +31,7 @@ export default async function LoginPage({
             SS
           </span>
           <h1 className="text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">
-            Welcome to SkillSpring
+            Welcome to SkillSolutions
           </h1>
           <p className="max-w-xs text-sm text-slate-500">
             {isRegister

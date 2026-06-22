@@ -280,7 +280,7 @@ export function CommonHeader({
               href="/"
               onClick={closeAccountMenu}
             >
-              SkillSpring
+              SkillSolutions
             </Link>
           )}
         </div>

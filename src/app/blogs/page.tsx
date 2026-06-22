@@ -24,7 +24,7 @@ export default function BlogsPage() {
       <section className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
         <h1 className="text-3xl font-bold text-slate-900">Blogs</h1>
         <p className="mt-3 text-sm text-slate-600">
-          Learning guides and career insights from the SkillSpring team.
+          Learning guides and career insights from the SkillSolutions team.
         </p>
 
         <div className="mt-6 grid gap-4 md:grid-cols-2">
