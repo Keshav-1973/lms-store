@@ -38,7 +38,7 @@ export default function TermsConditionPage() {
               <span className="font-medium">2.2</span> You are solely
               responsible for maintaining the confidentiality of Your
               Participant Account and all activities under it. You agree to
-              notify support@shefsolutionsllc.com immediately of any actual or
+              notify support@skillsolutionsllc.com immediately of any actual or
               suspected unauthorized use. You also agree to take all reasonable
               steps to stop such use and cooperate in any related investigation.
               We are not liable for claims arising from misuse of Your account
@@ -72,7 +72,7 @@ export default function TermsConditionPage() {
               4. Placement Terms and Conditions
             </h2>
             <p className="mt-2">
-              Shef Solutions LLC is a training provider for technology,
+              Skill Solutions LLC is a training provider for technology,
               management, law, and other upskilling courses. We work with
               jobseekers to improve employability, but We do not guarantee any
               job placement at any point.
@@ -159,11 +159,11 @@ export default function TermsConditionPage() {
               parties or other users.
             </p>
             <p className="mt-2">
-              <span className="font-medium">8.4</span> Maximum liability of Shef
-              Solutions LLC and its affiliates, officers, employees, agents, and
-              licensors, for any claim connected to Services or Content and
-              Courseware, shall not exceed fees paid by You for the applicable
-              course.
+              <span className="font-medium">8.4</span> Maximum liability of
+              Skill Solutions LLC and its affiliates, officers, employees,
+              agents, and licensors, for any claim connected to Services or
+              Content and Courseware, shall not exceed fees paid by You for the
+              applicable course.
             </p>
           </section>
 
@@ -196,7 +196,7 @@ export default function TermsConditionPage() {
             </h2>
             <p className="mt-2">
               <span className="font-medium">10.1</span> You agree to indemnify
-              and hold harmless Shef Solutions LLC, its contractors, licensors,
+              and hold harmless Skill Solutions LLC, its contractors, licensors,
               directors, officers, employees, and agents from claims, losses,
               liabilities, damages, and expenses (including attorneys&apos;
               fees) arising from unauthorized use or breach of this Agreement.

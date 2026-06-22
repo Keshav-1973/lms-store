@@ -2,7 +2,7 @@ export default function AboutPage() {
   const advantages = [
     {
       title: "Diversity & Inclusion Matters",
-      body: "Shef Solutions LLC is known for cohorts of students from diverse backgrounds, from degree holders to non-degree holders. We transform skills and prepare industry-ready professionals across the globe.",
+      body: "Skill Solutions LLC is known for cohorts of students from diverse backgrounds, from degree holders to non-degree holders. We transform skills and prepare industry-ready professionals across the globe.",
     },
     {
       title: "Accelerated Education",
@@ -14,7 +14,7 @@ export default function AboutPage() {
     },
     {
       title: "Industry Partnerships",
-      body: "Our Employer Partnerships Team continuously builds robust employer pipelines for Shef Solutions LLC alumni.",
+      body: "Our Employer Partnerships Team continuously builds robust employer pipelines for Skill Solutions LLC alumni.",
     },
     {
       title: "Innovation at the Core",
@@ -72,7 +72,7 @@ export default function AboutPage() {
       <section className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
         <h1 className="text-3xl font-bold text-slate-900">About Us</h1>
         <p className="mt-4 text-sm leading-relaxed text-slate-600">
-          As a leader in the education industry, Shef Solutions LLC believes
+          As a leader in the education industry, Skill Solutions LLC believes
           education is the best investment in the future. We are committed to
           changing lives and the world for the better.
         </p>
@@ -84,14 +84,14 @@ export default function AboutPage() {
         </p>
 
         <p className="mt-3 text-sm leading-relaxed text-slate-600">
-          Shef Solutions LLC is recognized as a top education provider with a
+          Skill Solutions LLC is recognized as a top education provider with a
           presence in over 60 countries. Beyond student programs, we also
           provide targeted educational solutions for organizations.
         </p>
 
         <p className="mt-3 text-sm leading-relaxed text-slate-600">
           With offices in seven countries, 500+ employees, and more than 100,000
-          student enrollments in the last 12 months, Shef Solutions LLC is a
+          student enrollments in the last 12 months, Skill Solutions LLC is a
           strong force in the global professional education market.
         </p>
 
@@ -124,7 +124,7 @@ export default function AboutPage() {
 
         <div className="mt-10">
           <h2 className="text-2xl font-semibold text-slate-900">
-            The Shef Solutions LLC Advantage
+            The Skill Solutions LLC Advantage
           </h2>
           <div className="mt-4 grid gap-4 md:grid-cols-2">
             {advantages.map((item) => (
@@ -150,7 +150,7 @@ export default function AboutPage() {
             </h2>
             <p className="mt-3 text-sm leading-relaxed text-slate-600">
               LEARN, GROW, and EXCEL are the core values of every individual at
-              Shef Solutions LLC.
+              Skill Solutions LLC.
             </p>
             <p className="mt-3 text-sm leading-relaxed text-slate-600">
               Our mission is to be the most preferred destination for quality
@@ -193,17 +193,11 @@ export default function AboutPage() {
         <section className="mt-10 rounded-2xl border border-slate-200 p-6">
           <h2 className="text-2xl font-semibold text-slate-900">About Owner</h2>
           <p className="mt-3 text-sm leading-relaxed text-slate-600">
-            Welcome to Shef Solutions LLC. We believe in the power of leadership
-            and innovation. The driving force behind our success is Deepanshu
-            Chaudhary.
+            Welcome to Skill Solutions LLC. We believe in the power of
+            leadership and innovation.
           </p>
           <p className="mt-3 text-sm leading-relaxed text-slate-600">
-            Deepanshu Chaudhary is the founder and sole stockholder of Shef
-            Solutions LLC. His vision for excellence and commitment to quality
-            has shaped the company since inception.
-          </p>
-          <p className="mt-3 text-sm leading-relaxed text-slate-600">
-            Established on February 9, 2019, Shef Solutions LLC has grown under
+            Established on February 9, 2019, Skill Solutions LLC has grown under
             his leadership through a culture of innovation, collaboration, and
             integrity, with a focus on exceeding expectations and driving
             measurable growth.

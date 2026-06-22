@@ -57,10 +57,10 @@ export default function ShippingPolicyPage() {
               If you have any questions or concerns about this Shipping Policy,
               please contact us at{" "}
               <a
-                href="mailto:info@shefsolutionsllc.com"
+                href="mailto:info@skillsolutionsllc.com"
                 className="font-medium text-cyan-700 hover:underline"
               >
-                info@shefsolutionsllc.com
+                info@skillsolutionsllc.com
               </a>
               .
             </p>

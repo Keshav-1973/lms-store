@@ -7,7 +7,7 @@ export default function PrivacyPolicyPage() {
         </h1>
 
         <p className="mt-4 text-sm leading-relaxed text-slate-600">
-          Shef Solutions LLC is committed to protecting your privacy. We take
+          Skill Solutions LLC is committed to protecting your privacy. We take
           data protection and privacy very seriously. This Privacy Policy
           describes how we collect, use, share, and secure personal information
           when you visit websites owned and operated by us and when you use our
@@ -152,10 +152,10 @@ export default function PrivacyPolicyPage() {
               If you have questions or concerns about this Privacy Policy,
               contact us at{" "}
               <a
-                href="mailto:info@shefsolutionsllc.com"
+                href="mailto:info@skillsolutionsllc.com"
                 className="font-medium text-cyan-700 hover:underline"
               >
-                info@shefsolutionsllc.com
+                info@skillsolutionsllc.com
               </a>
               .
             </p>
