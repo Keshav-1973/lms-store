@@ -37,7 +37,7 @@ export async function POST(request: Request) {
   const smtpUser = process.env.SMTP_USER;
   const smtpPass = process.env.SMTP_PASS;
   const mailFrom = process.env.MAIL_FROM ?? smtpUser;
-  const mailTo = process.env.MAIL_TO ?? "support@skillsolutions.com";
+  const mailTo = process.env.MAIL_TO ?? "support@skillsolutionsllc.com";
 
   const smtpPort = Number.parseInt(smtpPortRaw, 10);
   const secure =

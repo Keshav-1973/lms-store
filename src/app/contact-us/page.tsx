@@ -16,10 +16,10 @@ export default function ContactUsPage() {
           <p>
             Email:{" "}
             <Link
-              href="mailto:support@skillsolutions.com"
+              href="mailto:support@skillsolutionsllc.com"
               className="text-cyan-700 hover:underline"
             >
-              support@skillsolutions.com
+              support@skillsolutionsllc.com
             </Link>
           </p>
           <p>

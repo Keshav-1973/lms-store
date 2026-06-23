@@ -148,10 +148,10 @@ export default function RefundPolicyPage() {
             <p className="mt-2">
               For any questions or assistance, contact our support team at{" "}
               <a
-                href="mailto:support@skillsolutions.com"
+                href="mailto:support@skillsolutionsllc.com"
                 className="font-medium text-cyan-700 hover:underline"
               >
-                support@skillsolutions.com
+                support@skillsolutionsllc.com
               </a>
               .
             </p>

@@ -98,10 +98,10 @@ export function CommonFooter() {
             <p>
               Email:{" "}
               <Link
-                href="mailto:support@skillsolutions.com"
+                href="mailto:support@skillsolutionsllc.com"
                 className="transition hover:text-white"
               >
-                support@skillsolutions.com
+                support@skillsolutionsllc.com
               </Link>
             </p>
           </div>
