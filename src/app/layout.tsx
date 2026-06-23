@@ -4,6 +4,7 @@ import { CommonHeader } from "@/components/common-header";
 import { createClient } from "@/lib/supabase/server";
 import type { Metadata } from "next";
 import "./globals.css";
+import Providers from "./providers";
 import "./theme.css";
 
 export const metadata: Metadata = {
@@ -39,14 +40,16 @@ export default async function RootLayout({
   return (
     <html lang="en" className="h-full antialiased">
       <body className="min-h-full flex flex-col">
-        <CartProvider>
-          <CommonHeader
-            initialUserEmail={user?.email ?? null}
-            initialUserRole={initialUserRole}
-          />
-          {children}
-          <CommonFooter />
-        </CartProvider>
+        <Providers>
+          <CartProvider>
+            <CommonHeader
+              initialUserEmail={user?.email ?? null}
+              initialUserRole={initialUserRole}
+            />
+            {children}
+            <CommonFooter />
+          </CartProvider>
+        </Providers>
       </body>
     </html>
   );
