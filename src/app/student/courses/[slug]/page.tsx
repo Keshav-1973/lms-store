@@ -1,16 +1,10 @@
 import { getStudentCourseLearningData } from "@/features/lms/lms-service";
 import { createClient } from "@/lib/supabase/server";
-import {
-  Award,
-  BookOpen,
-  CheckCircle2,
-  Circle,
-  FileText,
-  PlayCircle,
-} from "lucide-react";
+import { Award, BookOpen, FileText, PlayCircle } from "lucide-react";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { generateCertificate, updateLessonProgress } from "./actions";
+import { LessonProgressSubmitButton } from "./lesson-progress-submit-button";
 
 type StudentCoursePageProps = {
   params: Promise<{
@@ -221,22 +215,9 @@ export default async function StudentCoursePage({
                         name="completed"
                         value={lesson.completed ? "false" : "true"}
                       />
-                      <button
-                        type="submit"
-                        className="inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 hover:bg-slate-100"
-                      >
-                        {lesson.completed ? (
-                          <>
-                            <CheckCircle2 className="h-4 w-4 text-emerald-600" />
-                            Mark Incomplete
-                          </>
-                        ) : (
-                          <>
-                            <Circle className="h-4 w-4 text-slate-400" />
-                            Mark Complete
-                          </>
-                        )}
-                      </button>
+                      <LessonProgressSubmitButton
+                        completed={lesson.completed}
+                      />
                     </form>
                   </div>
 

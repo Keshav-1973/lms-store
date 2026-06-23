@@ -545,7 +545,7 @@ export function CourseContentForm({
                       />
                     </div>
 
-                    <div className="flex items-center justify-between">
+                    <div className="mt-4 flex flex-col-reverse gap-3 sm:flex-row sm:items-center sm:justify-between">
                       <label className="inline-flex items-center gap-2 rounded-lg border border-slate-200 px-2.5 py-2 text-sm text-slate-600">
                         <input
                           name="published"
@@ -557,7 +557,7 @@ export function CourseContentForm({
                       <button
                         type="submit"
                         disabled={isPending}
-                        className="rounded-lg border border-slate-200 px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-100 disabled:opacity-50"
+                        className="rounded-lg bg-slate-900 px-3 py-2 text-sm font-semibold text-white hover:bg-slate-700 disabled:opacity-50"
                       >
                         {isPending ? "Saving..." : "Save"}
                       </button>
