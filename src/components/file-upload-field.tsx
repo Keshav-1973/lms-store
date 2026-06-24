@@ -118,9 +118,9 @@ export function FileUploadField({
     <div className="space-y-2">
       {value && fileName ? (
         <div className="flex items-center justify-between rounded-lg border border-emerald-200 bg-emerald-50 px-3 py-2">
-          <div className="flex items-center gap-2">
+          <div className="min-w-0 flex flex-1 items-center gap-2">
             <div className="h-2 w-2 rounded-full bg-emerald-600" />
-            <span className="truncate text-sm font-medium text-emerald-900">
+            <span className="block truncate text-sm font-medium text-emerald-900">
               {fileName}
             </span>
           </div>
@@ -128,7 +128,7 @@ export function FileUploadField({
             type="button"
             onClick={() => onChange("")}
             disabled={disabled || isUploading}
-            className="text-emerald-600 hover:text-emerald-700 disabled:opacity-50"
+            className="ml-2 shrink-0 text-emerald-600 hover:text-emerald-700 disabled:opacity-50"
             title="Remove file"
           >
             <X className="h-4 w-4" />

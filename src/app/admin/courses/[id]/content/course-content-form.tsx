@@ -268,19 +268,19 @@ export function CourseContentForm({
             name="title"
             required
             placeholder="Module title"
-            className="rounded-lg border border-slate-200 px-3 py-2 text-sm"
+            className="min-w-0 rounded-lg border border-slate-200 px-3 py-2 text-sm"
           />
           <input
             name="description"
             placeholder="Module description"
-            className="rounded-lg border border-slate-200 px-3 py-2 text-sm"
+            className="min-w-0 rounded-lg border border-slate-200 px-3 py-2 text-sm"
           />
           <input
             name="position"
             type="number"
             min={0}
             placeholder="Position"
-            className="rounded-lg border border-slate-200 px-3 py-2 text-sm"
+            className="min-w-0 rounded-lg border border-slate-200 px-3 py-2 text-sm"
           />
           <label className="inline-flex items-center gap-2 rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-600">
             <input name="published" type="checkbox" defaultChecked />
@@ -289,7 +289,7 @@ export function CourseContentForm({
           <button
             type="submit"
             disabled={isPending}
-            className="inline-flex items-center justify-center gap-1 rounded-lg bg-slate-900 px-4 py-2 text-sm font-semibold text-white transition hover:bg-slate-700 disabled:opacity-50"
+            className="inline-flex w-full items-center justify-center gap-1 rounded-lg bg-slate-900 px-4 py-2 text-sm font-semibold text-white transition hover:bg-slate-700 disabled:opacity-50 sm:col-span-2 lg:col-span-1"
           >
             <Plus className="h-4 w-4" />
             {isPending ? "Adding..." : "Add Module"}
@@ -310,12 +310,12 @@ export function CourseContentForm({
           className="rounded-2xl border border-slate-100 bg-white p-5 shadow-sm"
         >
           {/* Module Header */}
-          <div className="flex items-center justify-between gap-3">
-            <h2 className="inline-flex items-center gap-2 text-lg font-semibold text-slate-900">
+          <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+            <h2 className="inline-flex min-w-0 items-center gap-2 text-lg font-semibold text-slate-900">
               <BookOpen className="h-5 w-5 text-slate-500" />
-              {module.title}
+              <span className="wrap-break-word">{module.title}</span>
             </h2>
-            <form action={handleDeleteModule}>
+            <form action={handleDeleteModule} className="w-full sm:w-auto">
               <input type="hidden" name="module_id" value={module.id} />
               <input type="hidden" name="course_id" value={courseId} />
               <input type="hidden" name="course_slug" value={courseSlug} />
@@ -329,7 +329,7 @@ export function CourseContentForm({
                   )
                 }
                 disabled={isPending}
-                className="inline-flex items-center gap-1 rounded-lg border border-red-200 bg-red-50 px-2.5 py-1.5 text-xs font-semibold text-red-600 hover:bg-red-100 disabled:opacity-50"
+                className="inline-flex w-full items-center justify-center gap-1 rounded-lg border border-red-200 bg-red-50 px-2.5 py-1.5 text-xs font-semibold text-red-600 hover:bg-red-100 disabled:opacity-50 sm:w-auto"
               >
                 <Trash2 className="h-3.5 w-3.5" />
                 Delete Module
@@ -349,19 +349,19 @@ export function CourseContentForm({
               name="title"
               required
               defaultValue={module.title}
-              className="rounded-lg border border-slate-200 px-3 py-2 text-sm"
+              className="min-w-0 rounded-lg border border-slate-200 px-3 py-2 text-sm"
             />
             <input
               name="description"
               defaultValue={module.description}
-              className="rounded-lg border border-slate-200 px-3 py-2 text-sm"
+              className="min-w-0 rounded-lg border border-slate-200 px-3 py-2 text-sm"
             />
             <input
               name="position"
               type="number"
               min={0}
               defaultValue={module.position}
-              className="rounded-lg border border-slate-200 px-3 py-2 text-sm"
+              className="min-w-0 rounded-lg border border-slate-200 px-3 py-2 text-sm"
             />
             <label className="inline-flex items-center gap-2 rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-600">
               <input
@@ -374,7 +374,7 @@ export function CourseContentForm({
             <button
               type="submit"
               disabled={isPending}
-              className="rounded-lg border border-slate-200 px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-100 disabled:opacity-50"
+              className="rounded-lg border border-slate-200 px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-100 disabled:opacity-50 sm:col-span-2 lg:col-span-1"
             >
               {isPending ? "Saving..." : "Update Module"}
             </button>
@@ -399,8 +399,8 @@ export function CourseContentForm({
                   key={lesson.id}
                   className="rounded-xl border border-slate-200 bg-white p-3"
                 >
-                  <div className="mb-2 flex items-center justify-between">
-                    <p className="inline-flex items-center gap-2 text-sm font-semibold text-slate-700">
+                  <div className="mb-2 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+                    <p className="inline-flex min-w-0 items-center gap-2 text-sm font-semibold text-slate-700">
                       {lesson.content_type === "video" ? (
                         <PlayCircle className="h-4 w-4 text-cyan-600" />
                       ) : lesson.content_type === "both" ? (
@@ -411,9 +411,12 @@ export function CourseContentForm({
                       ) : (
                         <FileText className="h-4 w-4 text-amber-600" />
                       )}
-                      {lesson.title}
+                      <span className="wrap-break-word">{lesson.title}</span>
                     </p>
-                    <form action={handleDeleteLesson}>
+                    <form
+                      action={handleDeleteLesson}
+                      className="w-full sm:w-auto"
+                    >
                       <input type="hidden" name="lesson_id" value={lesson.id} />
                       <input type="hidden" name="course_id" value={courseId} />
                       <input
@@ -431,7 +434,7 @@ export function CourseContentForm({
                           )
                         }
                         disabled={isPending}
-                        className="text-xs font-semibold text-red-600 hover:text-red-700 disabled:opacity-50"
+                        className="w-full rounded-md border border-red-200 bg-red-50 px-2.5 py-1.5 text-xs font-semibold text-red-600 hover:bg-red-100 disabled:opacity-50 sm:w-auto sm:border-0 sm:bg-transparent sm:px-0 sm:py-0 sm:hover:bg-transparent sm:hover:text-red-700"
                       >
                         Delete
                       </button>
@@ -465,7 +468,7 @@ export function CourseContentForm({
                         required
                         defaultValue={lesson.title}
                         placeholder="Lesson title"
-                        className="rounded-lg border border-slate-200 px-2.5 py-2 text-sm"
+                        className="min-w-0 rounded-lg border border-slate-200 px-2.5 py-2 text-sm"
                       />
                       <select
                         name="content_type"
@@ -476,7 +479,7 @@ export function CourseContentForm({
                             [lesson.id]: e.target.value,
                           }))
                         }
-                        className="rounded-lg border border-slate-200 px-2.5 py-2 text-sm"
+                        className="min-w-0 rounded-lg border border-slate-200 px-2.5 py-2 text-sm"
                       >
                         <option value="video">Video</option>
                         <option value="pdf">PDF</option>
@@ -488,7 +491,7 @@ export function CourseContentForm({
                         min={0}
                         defaultValue={lesson.duration_seconds}
                         placeholder="Duration (seconds)"
-                        className="rounded-lg border border-slate-200 px-2.5 py-2 text-sm"
+                        className="min-w-0 rounded-lg border border-slate-200 px-2.5 py-2 text-sm"
                       />
                     </div>
 
@@ -535,13 +538,13 @@ export function CourseContentForm({
                         min={0}
                         defaultValue={lesson.position}
                         placeholder="Position"
-                        className="rounded-lg border border-slate-200 px-2.5 py-2 text-sm"
+                        className="min-w-0 rounded-lg border border-slate-200 px-2.5 py-2 text-sm"
                       />
                       <input
                         name="description"
                         defaultValue={lesson.description}
                         placeholder="Description"
-                        className="rounded-lg border border-slate-200 px-2.5 py-2 text-sm md:col-span-2"
+                        className="min-w-0 rounded-lg border border-slate-200 px-2.5 py-2 text-sm md:col-span-2"
                       />
                     </div>
 
@@ -557,7 +560,7 @@ export function CourseContentForm({
                       <button
                         type="submit"
                         disabled={isPending}
-                        className="rounded-lg bg-slate-900 px-3 py-2 text-sm font-semibold text-white hover:bg-slate-700 disabled:opacity-50"
+                        className="rounded-lg bg-slate-900 px-3 py-2 text-sm font-semibold text-white hover:bg-slate-700 disabled:opacity-50 sm:min-w-28"
                       >
                         {isPending ? "Saving..." : "Save"}
                       </button>
@@ -566,7 +569,7 @@ export function CourseContentForm({
 
                   {/* Resources Section */}
                   <div className="mt-3 rounded-lg border border-slate-100 bg-slate-50 p-3">
-                    <div className="mb-2 flex items-center justify-between">
+                    <div className="mb-2 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                       <p className="text-xs font-semibold text-slate-600 uppercase tracking-wider">
                         Resources
                       </p>
@@ -579,7 +582,7 @@ export function CourseContentForm({
                           }))
                         }
                         disabled={isPending}
-                        className="inline-flex items-center gap-1 rounded px-2 py-1 text-xs font-semibold text-slate-700 hover:bg-slate-200 disabled:opacity-50"
+                        className="inline-flex w-full items-center justify-center gap-1 rounded px-2 py-1 text-xs font-semibold text-slate-700 hover:bg-slate-200 disabled:opacity-50 sm:w-auto"
                       >
                         <Plus className="h-3 w-3" />
                         Add Resource
@@ -593,18 +596,22 @@ export function CourseContentForm({
                       </p>
                     ) : (
                       <div className="space-y-2">
-                        {lesson.resources.map((resource, idx) => (
+                        {lesson.resources.map((resource) => (
                           <div
                             key={resource.id}
-                            className="flex items-start gap-2 rounded bg-white p-2 text-xs"
+                            className="flex flex-col gap-2 rounded bg-white p-2 text-xs sm:flex-row sm:items-start"
                           >
-                            <div className="flex-1">
+                            <div className="min-w-0 flex-1">
                               <p className="font-semibold text-slate-700">
-                                {resource.title}
+                                <span className="wrap-break-word">
+                                  {resource.title}
+                                </span>
                               </p>
-                              <p className="text-slate-500">{resource.type}</p>
+                              <p className="wrap-break-word text-slate-500">
+                                {resource.type}
+                              </p>
                             </div>
-                            <div className="flex gap-1">
+                            <div className="flex w-full gap-1 sm:w-auto">
                               <button
                                 type="button"
                                 onClick={() => {
@@ -613,7 +620,7 @@ export function CourseContentForm({
                                     [resource.id]: resource.url,
                                   }));
                                 }}
-                                className="rounded px-2 py-1 text-slate-600 hover:bg-blue-100 hover:text-blue-700"
+                                className="flex-1 rounded px-2 py-1 text-slate-600 hover:bg-blue-100 hover:text-blue-700 sm:flex-none"
                               >
                                 Edit
                               </button>
@@ -646,7 +653,7 @@ export function CourseContentForm({
                                     )
                                   }
                                   disabled={isPending}
-                                  className="rounded px-2 py-1 text-red-600 hover:bg-red-100 hover:text-red-700 disabled:opacity-50"
+                                  className="flex-1 rounded px-2 py-1 text-red-600 hover:bg-red-100 hover:text-red-700 disabled:opacity-50 sm:flex-none"
                                 >
                                   Delete
                                 </button>
@@ -684,11 +691,11 @@ export function CourseContentForm({
                             name="title"
                             required
                             placeholder="Resource title"
-                            className="rounded border border-slate-200 px-2 py-1 text-xs"
+                            className="min-w-0 rounded border border-slate-200 px-2 py-1 text-xs"
                           />
                           <select
                             name="type"
-                            className="rounded border border-slate-200 px-2 py-1 text-xs"
+                            className="min-w-0 rounded border border-slate-200 px-2 py-1 text-xs"
                           >
                             <option value="video">Video</option>
                             <option value="pdf">PDF</option>
@@ -697,14 +704,14 @@ export function CourseContentForm({
                           <input
                             name="description"
                             placeholder="Description (optional)"
-                            className="rounded border border-slate-200 px-2 py-1 text-xs md:col-span-2"
+                            className="min-w-0 rounded border border-slate-200 px-2 py-1 text-xs md:col-span-2"
                           />
                           <input
                             name="position"
                             type="number"
                             min={0}
                             placeholder="Position"
-                            className="rounded border border-slate-200 px-2 py-1 text-xs"
+                            className="min-w-0 rounded border border-slate-200 px-2 py-1 text-xs"
                           />
                           <label className="inline-flex items-center gap-1 rounded border border-slate-200 px-2 py-1 text-xs text-slate-600">
                             <input
@@ -712,7 +719,7 @@ export function CourseContentForm({
                               type="checkbox"
                               defaultChecked
                             />
-                            Published
+                            <span>Published</span>
                           </label>
                         </div>
 
@@ -730,7 +737,7 @@ export function CourseContentForm({
                           />
                         </div>
 
-                        <div className="mt-2 flex gap-2">
+                        <div className="mt-2 flex flex-col gap-2 sm:flex-row">
                           <button
                             type="submit"
                             disabled={isPending}
@@ -773,13 +780,13 @@ export function CourseContentForm({
                     name="title"
                     required
                     placeholder="Lesson title"
-                    className="rounded-lg border border-slate-200 px-2.5 py-2 text-sm"
+                    className="min-w-0 rounded-lg border border-slate-200 px-2.5 py-2 text-sm"
                   />
                   <select
                     name="content_type"
                     value={contentType}
                     onChange={(e) => setContentType(e.target.value)}
-                    className="rounded-lg border border-slate-200 px-2.5 py-2 text-sm"
+                    className="min-w-0 rounded-lg border border-slate-200 px-2.5 py-2 text-sm"
                   >
                     <option value="video">Video</option>
                     <option value="pdf">PDF</option>
@@ -790,7 +797,7 @@ export function CourseContentForm({
                     type="number"
                     min={0}
                     placeholder="Duration (seconds)"
-                    className="rounded-lg border border-slate-200 px-2.5 py-2 text-sm"
+                    className="min-w-0 rounded-lg border border-slate-200 px-2.5 py-2 text-sm"
                   />
                 </div>
 
@@ -828,16 +835,16 @@ export function CourseContentForm({
                     type="number"
                     min={0}
                     placeholder="Position"
-                    className="rounded-lg border border-slate-200 px-2.5 py-2 text-sm"
+                    className="min-w-0 rounded-lg border border-slate-200 px-2.5 py-2 text-sm"
                   />
                   <input
                     name="description"
                     placeholder="Description"
-                    className="rounded-lg border border-slate-200 px-2.5 py-2 text-sm md:col-span-2"
+                    className="min-w-0 rounded-lg border border-slate-200 px-2.5 py-2 text-sm md:col-span-2"
                   />
                 </div>
 
-                <div className="flex items-center justify-between">
+                <div className="flex flex-col-reverse gap-3 sm:flex-row sm:items-center sm:justify-between">
                   <label className="inline-flex items-center gap-2 rounded-lg border border-slate-200 px-2.5 py-2 text-sm text-slate-600">
                     <input name="published" type="checkbox" defaultChecked />
                     <span>Published</span>
@@ -845,7 +852,7 @@ export function CourseContentForm({
                   <button
                     type="submit"
                     disabled={isPending}
-                    className="inline-flex items-center justify-center gap-1 rounded-lg bg-slate-900 px-3 py-2 text-sm font-semibold text-white hover:bg-slate-700 disabled:opacity-50"
+                    className="inline-flex w-full items-center justify-center gap-1 rounded-lg bg-slate-900 px-3 py-2 text-sm font-semibold text-white hover:bg-slate-700 disabled:opacity-50 sm:w-auto"
                   >
                     <Plus className="h-4 w-4" />
                     {isPending ? "Adding..." : "Add Lesson"}

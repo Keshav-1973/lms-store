@@ -28,8 +28,8 @@ export default async function CourseContentPage({
   const modules = await listCourseContentForAdmin(supabase, course.id);
 
   return (
-    <main className="mx-auto w-full max-w-6xl px-5 py-10 sm:px-8">
-      <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
+    <div className="w-full">
+      <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <Link
             href="/admin/courses"
@@ -46,10 +46,10 @@ export default async function CourseContentPage({
           </p>
         </div>
         <Link
-          href={`/student/courses/${course.slug}`}
-          className="rounded-lg border border-slate-200 px-3 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-100"
+          href={`/courses/${course.slug}`}
+          className="w-full rounded-lg border border-slate-200 px-3 py-2 text-center text-sm font-semibold text-slate-700 transition hover:bg-slate-100 sm:w-auto"
         >
-          Preview Learning Page
+          Preview Course Page
         </Link>
       </div>
 
@@ -58,6 +58,6 @@ export default async function CourseContentPage({
         courseSlug={course.slug}
         modules={modules}
       />
-    </main>
+    </div>
   );
 }
