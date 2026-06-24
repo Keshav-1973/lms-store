@@ -19,6 +19,17 @@ type CourseDetailsPageProps = {
   }>;
 };
 
+function formatUsd(amount: number) {
+  const normalized = Math.round(amount);
+
+  return new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
+  }).format(normalized);
+}
+
 export default async function CourseDetailsPage({
   params,
 }: CourseDetailsPageProps) {
@@ -78,6 +89,9 @@ export default async function CourseDetailsPage({
     outcomes: (course.outcomes as string[]) ?? [],
   };
   const hasDiscount = c.compareAtPrice > c.price;
+  const savingsAmount = hasDiscount
+    ? Math.round(c.compareAtPrice - c.price)
+    : 0;
 
   return (
     <main className="relative mx-auto w-full max-w-6xl px-5 pb-14 pt-6 sm:px-8 sm:pt-8">
@@ -168,19 +182,22 @@ export default async function CourseDetailsPage({
             </article>
 
             <div className="grid gap-4 sm:grid-cols-2">
-              <article className="rounded-2xl border border-(--theme-border) bg-(--theme-surface-raised) p-5 shadow-sm">
-                <h2 className="inline-flex items-center gap-2 text-lg font-semibold text-(--theme-text-primary)">
+              <article className="flex h-full min-h-65 flex-col rounded-2xl border border-cyan-200 bg-cyan-50/40 p-5 shadow-sm">
+                <p className="inline-flex w-fit rounded-full border border-cyan-200 bg-white px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-cyan-700">
+                  Learning Benefits
+                </p>
+                <h2 className="mt-3 inline-flex items-center gap-2 text-lg font-semibold text-(--theme-text-primary)">
                   <ShieldCheck
-                    className="h-5 w-5 text-(--theme-brand)"
+                    className="h-5 w-5 text-cyan-700"
                     aria-hidden="true"
                   />
                   What is included
                 </h2>
                 <ul className="mt-3 space-y-2.5 text-sm text-(--theme-text-secondary)">
                   {c.included.map((item: string) => (
-                    <li key={item} className="flex gap-2.5">
+                    <li key={item} className="flex items-start gap-2.5">
                       <CheckCircle2
-                        className="mt-0.5 h-4 w-4 shrink-0 text-(--theme-brand)"
+                        className="mt-0.5 h-4 w-4 shrink-0 text-cyan-700"
                         aria-hidden="true"
                       />
                       <span>{item}</span>
@@ -189,19 +206,22 @@ export default async function CourseDetailsPage({
                 </ul>
               </article>
 
-              <article className="rounded-2xl border border-(--theme-border) bg-(--theme-surface-raised) p-5 shadow-sm">
-                <h2 className="inline-flex items-center gap-2 text-lg font-semibold text-(--theme-text-primary)">
+              <article className="flex h-full min-h-65 flex-col rounded-2xl border border-amber-200 bg-amber-50/40 p-5 shadow-sm">
+                <p className="inline-flex w-fit rounded-full border border-amber-200 bg-white px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-amber-700">
+                  Career Results
+                </p>
+                <h2 className="mt-3 inline-flex items-center gap-2 text-lg font-semibold text-(--theme-text-primary)">
                   <Trophy
-                    className="h-5 w-5 text-(--theme-brand)"
+                    className="h-5 w-5 text-amber-700"
                     aria-hidden="true"
                   />
                   Outcomes
                 </h2>
                 <ul className="mt-3 space-y-2.5 text-sm text-(--theme-text-secondary)">
                   {c.outcomes.map((item: string) => (
-                    <li key={item} className="flex gap-2.5">
+                    <li key={item} className="flex items-start gap-2.5">
                       <CheckCircle2
-                        className="mt-0.5 h-4 w-4 shrink-0 text-(--theme-brand)"
+                        className="mt-0.5 h-4 w-4 shrink-0 text-amber-700"
                         aria-hidden="true"
                       />
                       <span>{item}</span>
@@ -248,17 +268,17 @@ export default async function CourseDetailsPage({
             <p className="text-sm text-(--theme-text-secondary)">Program Fee</p>
             <div className="mt-1 flex items-baseline gap-2">
               <p className="text-3xl font-bold text-(--theme-text-primary)">
-                ${c.price}
+                {formatUsd(c.price)}
               </p>
               {hasDiscount ? (
                 <p className="text-sm text-(--theme-text-muted) line-through">
-                  ${c.compareAtPrice}
+                  {formatUsd(c.compareAtPrice)}
                 </p>
               ) : null}
             </div>
             {hasDiscount ? (
               <p className="mt-2 text-xs font-semibold uppercase tracking-[0.08em] text-emerald-600">
-                Save ${c.compareAtPrice - c.price}
+                Save {formatUsd(savingsAmount)}
               </p>
             ) : null}
 

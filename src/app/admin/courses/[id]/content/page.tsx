@@ -47,6 +47,8 @@ export default async function CourseContentPage({
         </div>
         <Link
           href={`/courses/${course.slug}`}
+          target="_blank"
+          rel="noopener noreferrer"
           className="w-full rounded-lg border border-slate-200 px-3 py-2 text-center text-sm font-semibold text-slate-700 transition hover:bg-slate-100 sm:w-auto"
         >
           Preview Course Page

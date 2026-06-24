@@ -3,7 +3,7 @@
 import { ConfirmPopup } from "@/components/confirm-popup";
 import { FileUploadField } from "@/components/file-upload-field";
 import { BookOpen, FileText, PlayCircle, Plus, Trash2 } from "lucide-react";
-import { useState, useTransition } from "react";
+import { useMemo, useState, useTransition } from "react";
 import { toast } from "sonner";
 import {
   createLesson,
@@ -73,6 +73,15 @@ export function CourseContentForm({
   courseSlug,
   modules,
 }: CourseContentFormProps) {
+  const nextModulePosition = useMemo(() => {
+    const highestPosition = modules.reduce(
+      (highest, module) => Math.max(highest, module.position),
+      -1,
+    );
+
+    return highestPosition + 1;
+  }, [modules]);
+
   const [isPending, startTransition] = useTransition();
   const [contentType, setContentType] = useState("video");
   const [addLessonUrls, setAddLessonUrls] = useState<
@@ -279,7 +288,7 @@ export function CourseContentForm({
             name="position"
             type="number"
             min={0}
-            placeholder="Position"
+            defaultValue={nextModulePosition}
             className="min-w-0 rounded-lg border border-slate-200 px-3 py-2 text-sm"
           />
           <label className="inline-flex items-center gap-2 rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-600">
