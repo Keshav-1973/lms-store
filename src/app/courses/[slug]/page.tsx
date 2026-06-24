@@ -249,7 +249,7 @@ export default async function CourseDetailsPage({
                       className="rounded-xl border border-(--theme-border) bg-(--theme-surface) p-3 transition hover:-translate-y-0.5 hover:shadow-sm"
                     >
                       <p className="text-xs font-semibold uppercase tracking-[0.08em] text-(--theme-text-muted)">
-                        Step {index + 1}
+                        Module {index + 1}
                       </p>
                       <p className="mt-1 text-sm font-semibold text-(--theme-text-primary)">
                         {module.title}
