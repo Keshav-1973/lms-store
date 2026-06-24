@@ -569,8 +569,8 @@ export function CourseContentForm({
 
                   {/* Resources Section */}
                   <div className="mt-3 rounded-lg border border-slate-100 bg-slate-50 p-3">
-                    <div className="mb-2 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-                      <p className="text-xs font-semibold text-slate-600 uppercase tracking-wider">
+                    <div className="mb-2 flex flex-wrap items-center gap-2">
+                      <p className="min-w-0 flex-1 text-xs font-semibold text-slate-600 uppercase tracking-wider">
                         Resources
                       </p>
                       <button
@@ -582,7 +582,7 @@ export function CourseContentForm({
                           }))
                         }
                         disabled={isPending}
-                        className="inline-flex w-full items-center justify-center gap-1 rounded px-2 py-1 text-xs font-semibold text-slate-700 hover:bg-slate-200 disabled:opacity-50 sm:w-auto"
+                        className="inline-flex shrink-0 items-center justify-center gap-1 rounded px-2 py-1 text-xs font-semibold text-slate-700 hover:bg-slate-200 disabled:opacity-50"
                       >
                         <Plus className="h-3 w-3" />
                         Add Resource

@@ -12,6 +12,7 @@ import {
   Star,
   Users,
 } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 
@@ -108,6 +109,57 @@ export default function Home() {
       name: "Michael T.",
       role: "Cloud Engineer",
       tone: "from-(--theme-testimonial-card) via-(--theme-surface) to-(--theme-testimonial-bg) border-(--theme-testimonial-border)",
+    },
+  ] as const;
+
+  const corporateClients = [
+    {
+      name: "Cisco",
+      logo: "https://shefsolutionsllc.com/wp-content/uploads/2024/03/cisco-corp.png",
+    },
+    {
+      name: "Starbucks",
+      logo: "https://shefsolutionsllc.com/wp-content/uploads/2024/03/starbuck.png",
+    },
+    {
+      name: "TCS",
+      logo: "https://shefsolutionsllc.com/wp-content/uploads/2024/12/logo-1536x864.png",
+    },
+    {
+      name: "CompuCom",
+      logo: "https://shefsolutionsllc.com/wp-content/uploads/2024/03/compdd.png",
+    },
+    {
+      name: "Amazon",
+      logo: "https://shefsolutionsllc.com/wp-content/uploads/2024/03/Amazon-Logo-1024x576.png",
+    },
+    {
+      name: "Microsoft",
+      logo: "https://shefsolutionsllc.com/wp-content/uploads/2024/03/Microsoft_logo_2012.svg-1024x218.png",
+    },
+    {
+      name: "Citicorp",
+      logo: "https://shefsolutionsllc.com/wp-content/uploads/2024/03/city-corp.png",
+    },
+    {
+      name: "Coca-Cola",
+      logo: "https://shefsolutionsllc.com/wp-content/uploads/2024/03/cocacola-corp.png",
+    },
+    {
+      name: "Walmart",
+      logo: "https://shefsolutionsllc.com/wp-content/uploads/2024/03/walmart-corp.png",
+    },
+    {
+      name: "Wipro",
+      logo: "https://shefsolutionsllc.com/wp-content/uploads/2024/03/wipro_new-corp.png",
+    },
+    {
+      name: "Visa",
+      logo: "https://shefsolutionsllc.com/wp-content/uploads/2024/03/visa-corp.png",
+    },
+    {
+      name: "Honeywell",
+      logo: "https://shefsolutionsllc.com/wp-content/uploads/2024/03/honeywell-corp.png",
     },
   ] as const;
 
@@ -339,6 +391,31 @@ export default function Home() {
                   </p>
                   <p className="text-xs text-slate-500">{item.role}</p>
                 </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="reveal-up rounded-3xl border border-(--theme-border) bg-(--theme-surface) p-5 shadow-sm sm:p-7">
+          <div className="text-center">
+            <h2 className="mt-2 text-2xl font-semibold sm:text-3xl">
+              Our Top Corporate Clients
+            </h2>
+          </div>
+
+          <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
+            {corporateClients.map((client) => (
+              <article
+                key={client.name}
+                className="flex min-h-24 items-center justify-center rounded-2xl border border-(--theme-border) bg-white px-4 py-3"
+              >
+                <Image
+                  src={client.logo}
+                  alt={`${client.name} logo`}
+                  width={160}
+                  height={70}
+                  className="h-10 w-auto object-contain"
+                />
               </article>
             ))}
           </div>
